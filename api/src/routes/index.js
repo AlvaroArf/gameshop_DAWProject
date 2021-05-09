@@ -20,6 +20,14 @@ router.post('/product', setProduct);
 router.put('/product/:id', updateProduct);
 router.delete('/product/:id', deleteProduct);
 
+//CATEGORY ROUTES
+const { getCategories, getCategoryById, setCategory, updateCategory, deleteCategory } = require('../controllers/categories.controller');
+
+router.get('/categories', getCategories);
+router.get('/category/:id', getCategoryById);
+router.post('/category', setCategory);
+router.put('/category/:id', updateCategory);
+router.delete('/category/:id', deleteCategory);
 
 
 module.exports = router;
