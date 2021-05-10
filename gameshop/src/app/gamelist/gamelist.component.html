@@ -1,1 +1,7 @@
 <p>gamelist works!</p>
+<div class="game-container" *ngFor="let game of gamelist">
+    <div class="card card-medium" tabindex="0" [routerLink]="[game['id_producto']]" [routerLinkActivate]="['activado']">
+        <span>{{game['nombre_producto']}}</span>
+        <!--<span>{{repositorio['owner']['login']}}</span>-->
+    </div>
+</div>
