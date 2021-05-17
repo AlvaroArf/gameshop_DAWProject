@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+}
+
+header {
+    width: 100vw;
+    height: 12vh;
+    background-color: black;
+    box-sizing: border-box;
+    color: white;
+}
+
+nav, section {
+	margin-left: 13vw;
+	margin-right: 13vw;
+}
+
+nav {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+section {
+	background-color: #7FFFD4;
+	font-size: 20px;
+    width: 80;
+    margin-top: 1vh;
+    margin-bottom: 3vh;
+    padding-bottom: 3vh;
+    border-radius: 10px;
+}
+
+footer {
+    width: 100vw;
+    height: 12vh;
+    background-color: black;
+    box-sizing: border-box;
+    color: white;
+    bottom: 0px;
+}

@@ -17,12 +17,13 @@ export class APIDataService {
     console.log("EL DEBUG: " + this.http.get(this.data))
     return this.http.get(this.data);
   }
-  /*
+  
   getProduct(id:number): Observable<any>{
     this.data = "/api/product/" + id;
 
     return this.http.get(this.data);
   }
+  /*
   //CATEGORIES
   getCategories(): Observable<any>{
     this.data = "/api/categories";

@@ -1,0 +1,23 @@
+* {
+    margin-left: 1vw;
+}
+
+#game {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.texto-encima {
+    position: absolute;
+    top: 80%;
+    right: 10%;
+    font-size: 16px;
+    color: orangered;
+}
+
+div #game img {
+    width: 10vw;
+    height: 22vh;
+    border-radius: 8px;
+}
