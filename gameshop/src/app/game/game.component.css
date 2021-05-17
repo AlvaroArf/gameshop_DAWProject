@@ -1,0 +1,34 @@
+* {
+    margin-left:3vw;
+    margin-top:3vh;
+}
+
+#portada {
+    position: relative;
+    display: inline-block;
+    width: 20vw;
+    height: 40vh;
+    border-radius: 10px;
+}
+
+h2, .descripcion, .precio {
+    position: absolute;
+    left:35vw;
+}
+
+h2 {
+    top: 28vh;
+}
+
+.descripcion {
+    top: 34vh;
+    margin-right:14vw;
+}
+
+.precio {
+    position: absolute;
+    top: 58vh;
+    left:32vw;
+    color: orangered;
+    font-size: 6vh;
+}
