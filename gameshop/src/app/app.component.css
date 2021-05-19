@@ -18,12 +18,30 @@ nav, section {
 nav {
     margin-top: 2vh;
     margin-bottom: 2vh;
+    width: 73vw;
+}
+
+.dropdown {
+    display: inline-block;
+}
+
+.fav, .cesta {
+    position: absolute;
+
+}
+
+.fav {
+    right: 18vw;
+}
+
+.cesta {
+    right: 15vw;
 }
 
 section {
 	background-color: #7FFFD4;
 	font-size: 20px;
-    width: 80;
+    width: 73vw;
     margin-top: 1vh;
     margin-bottom: 3vh;
     padding-bottom: 3vh;
