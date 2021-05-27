@@ -40,7 +40,7 @@ router.post('/cart', setRequestGame);
 const { signIn, signUp, verifyToken } = require ('../controllers/auth.controller');
 
 router.post('/signin', signIn);
-router.post('/signUp', signUp);
+router.post('/signup', signUp);
 router.get('/verify', verifyToken);
 
 module.exports = router;

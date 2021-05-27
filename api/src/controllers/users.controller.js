@@ -24,10 +24,9 @@ const getUserById = async (req, res) => {
 };
 
 const findUser = async (req, res) => {
-    const { email, password } = req.body;
-    const response = await pool.query('SELECT id_usuario FROM usuario WHERE email = $1 and password = $2', [email, password]);
+    const { email } = req.body;
+    const response = await pool.query('SELECT id_usuario FROM usuario WHERE email = $1', [email]);
 
-    console.log("API id_usuario: " + response.rows);
     res.send(response.rows);
 };
 

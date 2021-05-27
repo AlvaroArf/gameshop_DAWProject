@@ -23,9 +23,4 @@ export class AuthService {
     return false;
   }
 
-  findUser(email, password) {
-    //return this.http.post<any>('/api/findUser', {email, password})
-    console.log("SERVICIO FRONT: " + this.http.post<any>('/api/findUser', {email, password}));
-    return 'coco';
-  }
 }

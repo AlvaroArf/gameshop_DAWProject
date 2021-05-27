@@ -16,16 +16,16 @@ const getRequestDetails = async (req, res) => {
 };
 
 const setRequestGame = async (req, res) => {
-    const { user, product  } = req.params;
+    const { user, product  } = req.body;
     console.log("API: " + user + " " + product);
     const response = await pool.query('insert into detalle_pedido (id_producto, cantidad, devuelto) values' +
                                       'select distinct prod.id_producto, 1 as "cantidad", false as "devuelto"' +
                                       'from producto as prod, detalle_pedido as dp' +
                                       'join pedido as ped on ped.id_pedido = dp.id_pedido' + 
                                       'where ped.id_usuario = $1' +
-                                      'and prod.id_producto = $2', [user, product]);
+                                      'and prod.id_producto = $2 returning *', [user, product]);
 
-    console.log(response.row);
+    console.log(response.rows);
     res.send('PRODUCT INSERTED ON REQUEST_DETAILS');
 };
 
