@@ -10,6 +10,11 @@ header {
     color: white;
 }
 
+.login button {
+    position:absolute;
+    right: 15vw;
+}
+
 nav, section {
 	margin-left: 13vw;
 	margin-right: 13vw;
@@ -26,6 +31,7 @@ nav {
 }
 
 .fav, .cesta {
+    top:15vh;
     position: absolute;
 
 }

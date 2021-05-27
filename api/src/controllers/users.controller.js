@@ -1,4 +1,5 @@
 const { Pool } = require('pg');
+const jwt = require('jsonwebtoken');
 
 const pool = new Pool({
     host: 'localhost',
@@ -22,11 +23,19 @@ const getUserById = async (req, res) => {
     //res.send('User ID ' + id);
 };
 
+const findUser = async (req, res) => {
+    const { email, password } = req.body;
+    const response = await pool.query('SELECT id_usuario FROM usuario WHERE email = $1 and password = $2', [email, password]);
+
+    console.log("API id_usuario: " + response.rows);
+    res.send(response.rows);
+};
+
 const setUser = async (req, res) => {
     const { email, password, nombre, apellidos, direccion } = req.body;
-    const response = await pool.query('INSERT INTO usuario (email, password, nombre, apellidos, direccion) VALUES ($1, $2, $3, $4, $5)', [email, password, nombre, apellidos, direccion]);
+    const response = await pool.query('INSERT INTO usuario (email, password, nombre, apellidos, direccion) VALUES ($1, $2, $3, $4, $5) returning *', [email, password, nombre, apellidos, direccion]);
 
-    console.log(response.row);
+    console.log(response.rows);
     res.send('USER CREATED');
 };
 
@@ -48,6 +57,7 @@ const deleteUser = async (req, res) => {
 module.exports = {
     getUsers,
     getUserById,
+    findUser,
     setUser,
     updateUser,
     deleteUser

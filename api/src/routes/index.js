@@ -2,11 +2,12 @@ const  { Router } = require('express');
 const router = Router();
 
 //USERS ROUTES
-const { getUsers, getUserById, setUser, updateUser, deleteUser } = require('../controllers/users.controller');
+const { getUsers, getUserById, findUser, setUser, updateUser, deleteUser } = require('../controllers/users.controller');
 
 
 router.get('/users', getUsers);
 router.get('/user/:id', getUserById);
+router.post('/findUser', findUser);
 router.post('/user', setUser);
 router.put('/user/:id', updateUser);
 router.delete('/user/:id', deleteUser);
@@ -29,5 +30,17 @@ router.post('/category', setCategory);
 router.put('/category/:id', updateCategory);
 router.delete('/category/:id', deleteCategory);
 
+//REQUEST ROUTES
+const { getRequestDetails, setRequestGame } = require ('../controllers/requests.controller');
+
+router.get('/cart', getRequestDetails);
+router.post('/cart', setRequestGame);
+
+//AUTH ROUTES
+const { signIn, signUp, verifyToken } = require ('../controllers/auth.controller');
+
+router.post('/signin', signIn);
+router.post('/signUp', signUp);
+router.get('/verify', verifyToken);
 
 module.exports = router;

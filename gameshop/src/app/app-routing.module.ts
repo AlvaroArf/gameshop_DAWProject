@@ -3,11 +3,34 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { GamelistComponent} from './gamelist/gamelist.component';
 import { GameComponent } from './game/game.component';
+import { SignupComponent} from './signup/signup.component';
+import { SigninComponent} from './signin/signin.component';
+import { CartComponent } from './cart/cart.component';
 
+import { AuthGuard } from "./auth.guard";
 
 const routes: Routes = [
-  { path: '', component: GamelistComponent },
-  { path: 'game/:id_producto', component: GameComponent}
+  { 
+    path: '', 
+    component: GamelistComponent,
+  },
+  { 
+    path: 'game/:id_producto', 
+    component: GameComponent
+  },
+  { 
+    path: 'signup', 
+    component: SignupComponent
+  },
+  { 
+    path: 'signin', 
+    component: SigninComponent 
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({

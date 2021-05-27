@@ -32,3 +32,10 @@ h2 {
     color: orangered;
     font-size: 6vh;
 }
+
+button {
+    position: absolute;
+    top: 60vh;
+    right:22vw;
+
+}

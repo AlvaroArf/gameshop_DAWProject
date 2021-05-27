@@ -1,10 +1,13 @@
 <p>gamelist works!</p>
 <div class="container">
-    <div class="row justify-content" *ngFor="let game of gamelist">
-        <div class="game col-8" [routerLink]="['/game', game['id_producto']]" [routerLinkActivate]="['activado']">
+    <div class="row justify-content" *ngFor="let game of gamelist;let indice=index">
+        <div class="game col-4" [routerLink]="['/game', game['id_producto']]" [routerLinkActivate]="['activado']">
             <img src="{{game['imagen']}}"/>
             <div class="texto-encima"><b>{{game['precio']}}</b></div>
             <p>{{game['nombre_producto']}}</p>
+        </div>
+        <div *ngIf="indice == 4 || indice == 8" >
+
         </div>
     </div>
 </div>
