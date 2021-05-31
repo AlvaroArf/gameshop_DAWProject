@@ -31,10 +31,11 @@ router.put('/category/:id', updateCategory);
 router.delete('/category/:id', deleteCategory);
 
 //REQUEST ROUTES
-const { getRequestDetails, setRequestGame } = require ('../controllers/requests.controller');
+const { getRequestDetails, setRequestGame, updateRequestGame } = require ('../controllers/requests.controller');
 
-router.get('/cart', getRequestDetails);
+router.get('/cart/:id', getRequestDetails);
 router.post('/cart', setRequestGame);
+router.post('/cartUpdate', updateRequestGame);
 
 //AUTH ROUTES
 const { signIn, signUp, verifyToken } = require ('../controllers/auth.controller');

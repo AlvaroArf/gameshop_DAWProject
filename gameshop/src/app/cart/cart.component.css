@@ -1,0 +1,91 @@
+* {
+    margin-left: 1vw;
+}
+
+table {
+    height: 60vh;
+    width: 73vw;
+}
+
+img {
+    width: 10vw;
+    height: 22vh;
+    border-radius: 8px;
+}
+
+.name {
+    font-size: 3vh;
+}
+
+.cantidad p{
+    display:inline-block;
+    background-color: rgb(185, 183, 183);
+    font-size: 1vw;
+    width: 16px;
+    margin-left: 0px;
+}
+
+.cantidad svg {
+    margin:0px;
+    padding:0px;
+}
+
+.price {
+    font-size: 5vh;
+    color: orangered;
+}
+
+.total {
+    font-size: 6vh;
+    text-align: right;
+    margin-right: 4vw;
+}
+/*
+div .row{
+    width: 67vw;
+    background-color: red;
+}
+
+div {
+    display: inline-block;
+    margin-top: 2vh;
+}
+
+.controller {
+    background-color: green;
+}
+
+img {
+    width: 10vw;
+    height: 22vh;
+    border-radius: 8px;
+}
+
+.name {
+    font-size: 3vh;
+}
+
+.cantidad p{
+    display:inline-block;
+    background-color: rgb(185, 183, 183);
+    font-size: 1vw;
+    width: 16px;
+    margin-left: 0px;
+}
+
+.cantidad svg {
+    margin:0px;
+    padding:0px;
+}
+
+.price {
+    font-size: 5vh;
+    color: orangered;
+    right:0px;
+}
+
+.total {
+    font-size: 6vh;
+    text-align: right;
+    margin-right: 4vw;
+}*/

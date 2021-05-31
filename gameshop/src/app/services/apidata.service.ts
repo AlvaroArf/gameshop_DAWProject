@@ -33,15 +33,20 @@ export class APIDataService {
   */
 
   //CART
-  getRequestGames(){}
+  getRequestDetails(id_usuario):Observable<any>{
+    return this.http.get("/api/cart/" + id_usuario);
+  }
 
   setRequestGame(id_usuario, id_producto): Observable<any>
   {
     //this.data = "/api/cart/" + id_usuario  + "/" + id_producto;
-    console.log("apidata:" + id_usuario + id_producto)
-    return this.http.post("/api/cart", {"user": id_usuario, "product": id_producto})
+    return this.http.post("/api/cart", {"id_usuario": id_usuario, "id_producto": id_producto});
   };
   
+  updateRequestGame(cantidad, id_pedido, id_producto):Observable<any>{
+    return this.http.post("/api/cartUpdate", {"cantidad": cantidad, "id_pedido": id_pedido, "id_producto": id_producto});
+  }
+
   //USER
   findUser(email) {
     return this.http.post<any>('/api/findUser', {"email": email});

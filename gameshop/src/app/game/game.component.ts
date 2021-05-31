@@ -14,7 +14,7 @@ export class GameComponent implements OnInit {
   public game: Array<any> = [];
   public info: any;
   public id:string;
-  public id_user = localStorage.getItem('id');
+  public id_user;
 
 
   constructor
@@ -39,8 +39,9 @@ export class GameComponent implements OnInit {
     })
   }
 
-  sendToCart(id_producto:number){
+  sendToCart(id_producto){
     if (this._authService.loggedIn()){
+      this.id_user = localStorage.getItem('id');
       this._apiDataService.setRequestGame(this.id_user, id_producto).subscribe(data=>{
         this.info = data;
       },
