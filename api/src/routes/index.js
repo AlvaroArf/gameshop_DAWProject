@@ -13,9 +13,10 @@ router.put('/user/:id', updateUser);
 router.delete('/user/:id', deleteUser);
 
 //PRODUCT ROUTES
-const { getProducts, getProductById, setProduct, updateProduct, deleteProduct } = require('../controllers/products.controller');
+const { getProducts, getProductsByCategory, getProductById, setProduct, updateProduct, deleteProduct } = require('../controllers/products.controller');
 
 router.get('/products', getProducts);
+router.get('/products/:id', getProductsByCategory);
 router.get('/product/:id', getProductById);
 router.post('/product', setProduct);
 router.put('/product/:id', updateProduct);

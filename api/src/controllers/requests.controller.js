@@ -10,7 +10,7 @@ const pool = new Pool({
 
 const getRequestDetails = async (req, res) => {
     const id = req.params.id;
-    const response = await pool.query('select dp.id_pedido, dp.id_producto, dp.cantidad, dp.devuelto, prod.nombre_producto, prod.precio, prod.imagen from producto as prod join pedido as ped on ped.id_usuario = $1 join detalle_pedido as dp on dp.id_pedido = ped.id_pedido where prod.id_producto = dp.id_producto;', [id]);
+    const response = await pool.query('select dp.id_pedido, dp.id_producto, dp.cantidad, dp.devuelto, prod.nombre_producto, prod.precio, prod.imagen from producto as prod join pedido as ped on ped.id_usuario = $1 join detalle_pedido as dp on dp.id_pedido = ped.id_pedido where prod.id_producto = dp.id_producto order by prod.nombre_producto;', [id]);
     //const response = await pool.query('select * from producto where id_producto in (select dp.id_producto from detalle_pedido as dp join pedido as ped on ped.id_usuario = $1 where dp.id_pedido = ped.id_pedido', [id_usuario])
     res.json(response.rows);
 };

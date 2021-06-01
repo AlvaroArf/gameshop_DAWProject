@@ -14,6 +14,12 @@ const getProducts = async (req, res) => {
     //console.log(response.rows);
 };
 
+const getProductsByCategory = async (req,res) => {
+    const id_categoria = req.params.id;
+    const response = await pool.query('select prod.id_producto, prod.nombre_producto, prod.precio, prod.imagen from producto as prod where prod.id_categoria = $1;', [id_categoria]);
+    res.json(response.rows);
+}
+
 const getProductById = async (req, res) => {
     const id = req.params.id;
     const response = await pool.query('SELECT * FROM producto WHERE id_producto = $1', [id]);
@@ -46,6 +52,7 @@ const deleteProduct = async (req, res) => {
 
 module.exports = {
     getProducts,
+    getProductsByCategory,
     getProductById,
     setProduct,
     updateProduct,

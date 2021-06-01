@@ -23,14 +23,19 @@ export class APIDataService {
 
     return this.http.get(this.data);
   }
-  /*
+  
+  getProductsByCategory(id): Observable<any>{
+    this.data = "/api/products/" + id;
+    return this.http.get(this.data);
+  }
+
   //CATEGORIES
   getCategories(): Observable<any>{
     this.data = "/api/categories";
 
     return this.http.get(this.data);
   }
-  */
+  
 
   //CART
   getRequestDetails(id_usuario):Observable<any>{

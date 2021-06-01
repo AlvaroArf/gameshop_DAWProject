@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from "./auth.guard";
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AuthGuard } from "./auth.guard";
     HistoryComponent,
     AdmintoolsComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,

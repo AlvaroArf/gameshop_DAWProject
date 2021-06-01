@@ -1,0 +1,35 @@
+* {
+    margin-left: 1vw;
+}
+/*
+.container {
+    display:flex;
+    margin-left: 2vw;
+}
+
+.game {
+    margin-left:3vw;
+    position: relative;
+    display:inline-block;
+    text-align:center;
+}
+
+.texto-encima {
+    position:absolute;
+    font-size: 18px;
+    color: orangered;
+    bottom: 35px;
+    right: 0px;
+}
+*/
+
+img {
+    width: 10vw;
+    height: 22vh;
+    border-radius: 8px;
+}
+
+div p {
+    font-size: 12px;
+    text-align: center;
+}

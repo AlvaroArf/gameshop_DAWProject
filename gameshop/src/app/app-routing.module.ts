@@ -6,13 +6,19 @@ import { GameComponent } from './game/game.component';
 import { SignupComponent} from './signup/signup.component';
 import { SigninComponent} from './signin/signin.component';
 import { CartComponent } from './cart/cart.component';
+import { CategoryComponent } from './category/category.component';
 
 import { AuthGuard } from "./auth.guard";
 
 const routes: Routes = [
+  
   { 
     path: '', 
-    component: GamelistComponent,
+    component: GamelistComponent
+  },
+  {
+    path: 'category/:id_categoria',
+    component:CategoryComponent
   },
   { 
     path: 'game/:id_producto', 
