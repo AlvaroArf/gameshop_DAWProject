@@ -1,14 +1,13 @@
 * {
     margin-left: 1vw;
 }
-/*
+
 .container {
-    display:flex;
-    margin-left: 2vw;
+    margin-left: 4vw;
 }
 
 .game {
-    margin-left:3vw;
+    margin-left:1vw;
     position: relative;
     display:inline-block;
     text-align:center;
@@ -16,12 +15,11 @@
 
 .texto-encima {
     position:absolute;
-    font-size: 18px;
+    font-size: 1.5vw;
     color: orangered;
-    bottom: 35px;
-    right: 0px;
+    bottom: 3vh;
+    right: 1.5vw
 }
-*/
 
 img {
     width: 10vw;

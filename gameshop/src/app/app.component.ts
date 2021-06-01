@@ -27,6 +27,7 @@ export class AppComponent {
   }
 
   logOut(){
+    localStorage.removeItem('id');
     localStorage.removeItem('token');
     this._router.navigate(['/']);
     this.ngOnInit();
