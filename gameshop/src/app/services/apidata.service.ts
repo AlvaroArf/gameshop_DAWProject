@@ -52,6 +52,10 @@ export class APIDataService {
     return this.http.post("/api/cartUpdate", {"cantidad": cantidad, "id_pedido": id_pedido, "id_producto": id_producto});
   }
 
+  newRequest(id_pedido, id_usuario):Observable<any>{
+    return this.http.post("/api/newRequest", {"id_pedido": id_pedido, "id_usuario": id_usuario});
+  }
+
   //USER
   findUser(email) {
     return this.http.post<any>('/api/findUser', {"email": email});

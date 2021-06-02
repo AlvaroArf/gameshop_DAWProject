@@ -35,6 +35,13 @@ img {
     text-align: right;
 }
 
+button {
+    position:absolute;
+    width:25vw;
+    height: 10vh;
+    font-size: 6vh;
+}
+
 .total {
     font-size: 6vh;
     text-align: right;

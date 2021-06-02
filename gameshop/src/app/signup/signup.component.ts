@@ -32,10 +32,13 @@ export class SignupComponent implements OnInit {
       .subscribe(
         res => {
           console.log(res)
-          localStorage.setItem('token', res.token);
-          this._apiDataService.findUser(this.user.email).subscribe(data => {localStorage.setItem('id', data[0]['id_usuario'])});
+          if(res != undefined){
+            localStorage.setItem('token', res.token);
+            this._apiDataService.findUser(this.user.email).subscribe(data => {localStorage.setItem('id', data[0]['id_usuario'])});
+          }
           this._router.navigate(['/']);
           this._appComponent.ngOnInit();
+          
         },
         err => console.log(err)
       )

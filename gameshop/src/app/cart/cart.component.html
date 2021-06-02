@@ -1,5 +1,5 @@
 <p>cart works!</p>
-<!--{{cartlist | json}}-->
+{{cartlist | json}}
 <div class="container">
     <table>
         <tr *ngFor="let game of cartlist;let indice=index">
@@ -22,6 +22,8 @@
         </tr>
     </table>
     <hr>
+    <button class="btn btn-success" (click)="buyRequest(cartlist[0]['id_pedido'])">Comprar</button>
     <p class="price total"><b>{{all_total}}€</b></p>
+
 </div>
 

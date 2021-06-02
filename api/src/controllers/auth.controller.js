@@ -26,11 +26,18 @@ const signIn = async (req, res) => {
 const signUp = async (req, res) => {
     const { email, password, nombre, apellidos, direccion } = req.body;
     const response = await pool.query('INSERT INTO usuario (email, password, nombre, apellidos, direccion) VALUES ($1, $2, $3, $4, $5) returning *', [email, password, nombre, apellidos, direccion]);
-
-    const token = jwt.sign({id: response.rows.id_usuario}, 'secretKey');
-    return res.status(200).json({token});
+    await pool.query('insert into pedido (comprando, fecha, id_usuario) values (true, current_date, $1) returning *', [response.rows[0].id_usuario]);
+    //insertRequest(response.rows[0].id_usuario);
+    if(response != undefined){
+        const token = jwt.sign({id: response.rows[0].id_usuario}, 'secretKey');
+        return res.status(200).json({token});
+    }
 };
-
+/*
+const insertRequest = (id_usuario) => {
+    const response = pool.query('insert into pedido (comprando, fecha, id_usuario) values (true, current_date, $1)', [id_usuario]);
+}
+*/
 function verifyToken(req, res, next) {
     if (!req.headers.authorization) {
         return res.status(401).send('Autorización fallida');

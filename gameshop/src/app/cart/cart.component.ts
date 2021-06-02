@@ -18,7 +18,7 @@ export class CartComponent implements OnInit {
   constructor(private _apiDataService: APIDataService) { }
 
   ngOnInit(): void {
-
+    
     this._apiDataService.getRequestDetails(localStorage.getItem('id')).subscribe(data=>{
       //this.datos = data;
       this.cartlist = [];
@@ -67,5 +67,12 @@ export class CartComponent implements OnInit {
     this.ngOnInit();
   }
    
+  buyRequest(id_pedido){
+    let id_usuario = localStorage.getItem('id');
+    console.log("ID PEDIDO:" + id_pedido + ", ID USUARIO: " + id_usuario);
 
+    this._apiDataService.newRequest(id_pedido, id_usuario).subscribe(data=>{
+      this.ngOnInit();
+    });
+  }
 }
