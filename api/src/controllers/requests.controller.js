@@ -25,15 +25,37 @@ const setRequestGame = async (req, res) => {
     res.send('PRODUCT INSERTED ON REQUEST_DETAILS');
 };
 
+const productExist = async (req, res) => {
+    const { id_usuario, id_producto } = req.body;
+
+    const response = await pool.query('select cantidad from detalle_pedido where id_pedido in (select id_pedido from pedido where comprando = true and id_usuario = $1 and id_producto = $2);', [id_usuario, id_producto]);
+     
+    res.json(response.rows);
+};
+
+
 const updateRequestGame = async (req, res) => {
-    const { cantidad, id_pedido, id_producto } = req.body;
-    if (cantidad > 0) {
-        const response = await pool.query('update detalle_pedido as dp set cantidad = $1 where id_pedido = $2 and id_producto = $3;', [cantidad, id_pedido, id_producto]);
-        res.send('REQUEST_DETAILS UPDATED');
+    const { cantidad, id_pedido, id_producto, id_usuario } = req.body;
+    if(id_usuario == null){
+        if (cantidad > 0) {
+            const response = await pool.query('update detalle_pedido as dp set cantidad = $1 where id_pedido = $2 and id_producto = $3;', [cantidad, id_pedido, id_producto]);
+            res.send('REQUEST_DETAILS UPDATED');
+        } else {
+            const response = await pool.query('delete from detalle_pedido where id_pedido = $1 and id_producto = $2', [id_pedido, id_producto]);
+            res.send('REQUEST_DETAILS DELETED');
+        }
     } else {
-        const response = await pool.query('delete from detalle_pedido where id_pedido = $1 and id_producto = $2', [id_pedido, id_producto]);
-        res.send('REQUEST_DETAILS DELETED');
+        const consulta = await pool.query('select id_pedido, cantidad from detalle_pedido where id_pedido in (select id_pedido from pedido where id_usuario = $1 and comprando = true) and id_producto = $2', [id_usuario, id_producto]);
+        const cantidad = parseInt(consulta.rows[0]['cantidad']) + 1;
+        const id_pedido = consulta.rows[0]['id_pedido'];
+
+        const response = await pool.query('update detalle_pedido as dp set cantidad = $1 where id_pedido = $2 and id_producto = $3;', [cantidad, id_pedido, id_producto]);
+        res.send('REQUEST_DETAILS AMOUNT UPDATED');
+
+        //const cantidad = await pool.query('select cantidad from detalle_pedido where id_pedido = $1 and id_producto = $2', [id_pedido, id_producto]);
+        //res.json(cantidad.rows[0]['cantidad'])
     }
+
 }
 
 const newRequest = async (req, res) => {
@@ -48,6 +70,7 @@ const newRequest = async (req, res) => {
 module.exports = {
     getRequestDetails,
     setRequestGame,
+    productExist,
     updateRequestGame,
     newRequest
 }

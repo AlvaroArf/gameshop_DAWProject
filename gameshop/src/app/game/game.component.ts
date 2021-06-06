@@ -42,13 +42,18 @@ export class GameComponent implements OnInit {
   sendToCart(id_producto){
     if (this._authService.loggedIn()){
       this.id_user = localStorage.getItem('id');
-      this._apiDataService.setRequestGame(this.id_user, id_producto).subscribe(data=>{
-        this.info = data;
-      },
-      error => {
-        var errorMessage = error as any;
-        console.log(errorMessage);
-      }) 
+      this._apiDataService.productExist(this.id_user, id_producto).subscribe(data => {
+        console.log("EL DATA" + data[0]);
+        if(data[0] == undefined){
+          this._apiDataService.setRequestGame(this.id_user, id_producto).subscribe(data=>{
+            this.info = data;
+          })
+        } else {
+          this._apiDataService.updateRequestGame2(this.id_user, id_producto).subscribe(data => {
+            this.info = data;
+          })
+        }
+      })
     } else {
       this._router.navigate(['/signin']);
     }

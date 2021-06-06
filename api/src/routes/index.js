@@ -32,12 +32,14 @@ router.put('/category/:id', updateCategory);
 router.delete('/category/:id', deleteCategory);
 
 //REQUEST ROUTES
-const { getRequestDetails, setRequestGame, updateRequestGame, newRequest } = require ('../controllers/requests.controller');
+const { getRequestDetails, setRequestGame, productExist, updateRequestGame ,newRequest } = require ('../controllers/requests.controller');
 
 router.get('/cart/:id', getRequestDetails);
 router.post('/cart', setRequestGame);
+router.post('/cartExist', productExist);
 router.post('/cartUpdate', updateRequestGame);
 router.post('/newRequest', newRequest);
+
 
 //AUTH ROUTES
 const { signIn, signUp, verifyToken } = require ('../controllers/auth.controller');

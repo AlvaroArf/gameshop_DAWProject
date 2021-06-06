@@ -7,13 +7,14 @@ import { Observable } from 'rxjs';
 })
 export class APIDataService {
 
+  public url:string = "http://localhost:3000";
   public data:string;
 
   constructor(private http: HttpClient) { }
 
   //PRODUCTS
   getProducts(): Observable<any>{
-    this.data = "/api/products";
+    this.data ="/api/products";
     console.log("EL DEBUG: " + this.http.get(this.data))
     return this.http.get(this.data);
   }
@@ -45,11 +46,21 @@ export class APIDataService {
   setRequestGame(id_usuario, id_producto): Observable<any>
   {
     //this.data = "/api/cart/" + id_usuario  + "/" + id_producto;
+
     return this.http.post("/api/cart", {"id_usuario": id_usuario, "id_producto": id_producto});
   };
   
+  productExist(id_usuario, id_producto): Observable<any>
+  {
+    return this.http.post("/api/cartExist", {"id_usuario": id_usuario, "id_producto": id_producto});
+  }
+
   updateRequestGame(cantidad, id_pedido, id_producto):Observable<any>{
     return this.http.post("/api/cartUpdate", {"cantidad": cantidad, "id_pedido": id_pedido, "id_producto": id_producto});
+  }
+
+  updateRequestGame2(id_usuario, id_producto){
+    return this.http.post("/api/cartUpdate", {"id_usuario": id_usuario, "id_producto": id_producto});
   }
 
   newRequest(id_pedido, id_usuario):Observable<any>{
