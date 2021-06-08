@@ -15,7 +15,7 @@ export class APIDataService {
   //PRODUCTS
   getProducts(): Observable<any>{
     this.data ="/api/products";
-    console.log("EL DEBUG: " + this.http.get(this.data))
+    console.log("ON GETPRODUCTS");
     return this.http.get(this.data);
   }
   
@@ -71,4 +71,10 @@ export class APIDataService {
   findUser(email) {
     return this.http.post<any>('/api/findUser', {"email": email});
   }
+
+  //WISHLIST
+  getWishlist(id_usuario): Observable<any> {
+    return this.http.get('/api/wishlist/' + id_usuario);
+  }
+  
 }

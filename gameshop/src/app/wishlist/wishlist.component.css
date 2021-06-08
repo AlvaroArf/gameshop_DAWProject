@@ -1,0 +1,30 @@
+* {
+    margin-left: 2vw;
+}
+
+li {
+    margin-right: 5vw;
+}
+
+li p{
+    display:inline-block;
+    margin-left:6vw;
+    font-size: 3vh;
+}
+
+i {
+    cursor: move;
+}
+
+img {
+    height: 16vh;
+    width: 10vw;
+}
+
+.oscuro {
+    background-color: rgb(194, 194, 194);
+}
+
+.claro {
+    background-color: rgb(236, 236, 236);
+}

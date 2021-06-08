@@ -1,1 +1,43 @@
 <p>wishlist works!</p>
+<ul class="list-group" cdkDropList (cdkDropListDropped)="onDropped($event)">
+    <li class="list-group-item" *ngFor="let game of wishlist;let impar= odd;let par = even" [ngClass]="{oscuro:par,claro:impar}" cdkDrag>
+        <i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-justify" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+        </i>
+        <img src="{{game.imagen}}"/>
+        <p>{{game.nombre_producto}}</p>
+        <button type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </li>
+</ul>
+
+<!--
+<div class="container" *ngIf="wishlist[0] != null">
+    <table cdkDroplist (cdkDropListDropped)="onDropped($event)">
+        <tr class="game" *ngFor="let game of wishlist;let impar = odd;let par= even; let indice=index" [ngClass]="{oscuro:par, claro:impar}" cdkDrag>
+            <td>{{indice + 1}}</td>
+            <td>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-justify" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+            </td>
+            <td><img src="{{game['imagen']}}"/></td>
+            <td class="name">{{game['nombre_producto']}}</td>
+            <td>
+                <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="empty-cart" *ngIf="wishlist[0] == null">
+    <p class="vaya">¡VAYA!</p>
+    <p>Parece que no tiene ningún producto en el carrito...</p>
+    <img src="../../assets/images/carrito.png">
+</div>
+-->

@@ -48,6 +48,7 @@ section {
 	background-color: #7FFFD4;
 	font-size: 20px;
     width: 73vw;
+    min-height: 64.5vh;
     margin-top: 1vh;
     margin-bottom: 3vh;
     padding-bottom: 3vh;

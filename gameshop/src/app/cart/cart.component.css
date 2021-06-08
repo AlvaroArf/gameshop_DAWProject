@@ -47,3 +47,14 @@ button {
     text-align: right;
     margin-right: 4vw;
 }
+
+.empty-cart {
+    text-align: center;
+    font-size: 2vh;
+}
+
+.vaya {
+    margin-top: 6vh;
+    text-align: center;
+    font-size: 5vh;
+}

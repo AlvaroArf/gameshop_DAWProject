@@ -2,8 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule } from '@angular/common/http';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { GamelistComponent } from './gamelist/gamelist.component';
 import { GameComponent } from './game/game.component';
@@ -13,8 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { RatingComponent } from './game/rating/rating.component';
 import { HistoryComponent } from './profile/history/history.component';
 import { AdmintoolsComponent } from './profile/admintools/admintools.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from "./auth.guard";
@@ -40,7 +42,8 @@ import { CategoryComponent } from './category/category.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ],
   providers: [
     AuthGuard

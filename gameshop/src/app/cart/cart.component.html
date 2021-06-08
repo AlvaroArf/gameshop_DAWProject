@@ -1,5 +1,5 @@
 <p>cart works!</p>
-<div class="container">
+<div class="container" *ngIf="cartlist[0] != null">
     <table>
         <tr *ngFor="let game of cartlist;let indice=index">
             <td><img src="{{game['imagen']}}"/></td>
@@ -23,6 +23,9 @@
     <hr>
     <button class="btn btn-success" (click)="buyRequest(cartlist[0]['id_pedido'])">Comprar</button>
     <p class="price total"><b>{{all_total}}€</b></p>
-
 </div>
-
+<div class="empty-cart" *ngIf="cartlist[0] == null">
+    <p class="vaya">¡VAYA!</p>
+    <p>Parece que no tiene ningún producto en el carrito...</p>
+    <img src="../../assets/images/carrito.png">
+</div>
