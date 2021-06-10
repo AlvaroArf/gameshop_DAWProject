@@ -1,1 +1,58 @@
 <p>profile works!</p>
+<div class="user-info">
+    <div class="container-img">
+        <img src="{{user_info[0]['imagen']}}" data-toggle="modal" data-target="#exampleModal">
+    </div>
+    <div class="name-surname">
+        <h2 class="name">{{user_info[0]['nombre']}}</h2>&nbsp;&nbsp;<h2 class="surname">{{user_info[0]['apellidos']}}</h2>
+        <hr/>
+    </div>
+    <div class="info">
+        <ul>
+            <li>
+              <b>Email: </b>{{user_info[0]['email']}}  
+            </li>
+            <li>
+                <b>Dirección: </b>{{user_info[0]['direccion']}}
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="admin-tools" *ngIf="user_info[0]['admin']">
+    <app-admintools></app-admintools>
+</div>
+<div class="request-history" *ngIf="!user_info[0]['admin']">
+    <app-history></app-history>
+</div>
+
+
+<!-- MODAL - CAMBIAR IMAGEN -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Cambiar Imagen</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form role="form" (submit)="changeImage()">
+                <input type="hidden" name="_token" value="">
+                <div class="form-group">
+                    <label class="control-label">URL de la imagen:</label>
+                    <div>
+                        <input type="text" class="form-control input-lg" [(ngModel)]="image" name="image" placeholder="https://iespoligonosur.org/www/...">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <button type="submit" class="btn btn-success">Cambiar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+

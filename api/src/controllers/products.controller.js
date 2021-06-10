@@ -9,7 +9,7 @@ const pool = new Pool({
 })
 
 const getProducts = async (req, res) => {
-    const response = await pool.query('SELECT * FROM producto');
+    const response = await pool.query('SELECT * FROM producto ORDER BY nombre_producto');
     res.json(response.rows);
     //console.log(response.rows);
 };

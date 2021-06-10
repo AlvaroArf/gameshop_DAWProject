@@ -3,7 +3,7 @@ const router = Router();
 
 
 //USERS ROUTES
-const { getUsers, getUserById, findUser, setUser, updateUser, deleteUser } = require('../controllers/users.controller');
+const { getUsers, getUserById, findUser, setUser, updateUser, deleteUser, changeImage } = require('../controllers/users.controller');
 
 router.get('/users', getUsers);
 router.get('/user/:id', getUserById);
@@ -11,6 +11,7 @@ router.post('/findUser', findUser);
 router.post('/user', setUser);
 router.put('/user/:id', updateUser);
 router.delete('/user/:id', deleteUser);
+router.post('/user/changeImage', changeImage);
 
 
 //PRODUCT ROUTES
@@ -53,8 +54,11 @@ router.get('/verify', verifyToken);
 
 
 //WISHLIST ROUTES
-const { getWishlist } = require ('../controllers/wishlist.controller');
+const { getWishlist, setWishlist, delWishlist, orderWishlist } = require ('../controllers/wishlist.controller');
 
 router.get('/wishlist/:id', getWishlist);
+router.post('/wishlist', setWishlist);
+router.post('/wishlistDel', delWishlist);
+router.post('/wishlistOrder', orderWishlist);
 
 module.exports = router;

@@ -2,8 +2,8 @@
 <div class="container" *ngIf="cartlist[0] != null">
     <table>
         <tr *ngFor="let game of cartlist;let indice=index">
-            <td><img src="{{game['imagen']}}"/></td>
-            <td class="name"><p>{{game['nombre_producto']}}</p></td>
+            <td><img src="{{game['imagen']}}" [routerLink]="['/game', game['id_producto']]" [routerLinkActivate]="['activado']"/></td>
+            <td class="name" [routerLink]="['/game', game['id_producto']]" [routerLinkActivate]="['activado']"><p>{{game['nombre_producto']}}</p></td>
             <td class="cantidad">
                 <i *ngIf="game.cantidad ge 0" (click)="updateCantidad([game['cantidad'], 'restar'], game['id_pedido'], game['id_producto'])">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill top-arrow" viewBox="0 0 16 16">

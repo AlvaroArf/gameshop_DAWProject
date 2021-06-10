@@ -24,8 +24,10 @@ const signIn = async (req, res) => {
 };
 
 const signUp = async (req, res) => {
-    const { email, password, nombre, apellidos, direccion } = req.body;
-    const response = await pool.query('INSERT INTO usuario (email, password, nombre, apellidos, direccion) VALUES ($1, $2, $3, $4, $5) returning *', [email, password, nombre, apellidos, direccion]);
+    const { name, surname, email, address, password} = req.body;
+    const imagen = 'https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png';
+
+    const response = await pool.query('INSERT INTO usuario (email, password, nombre, apellidos, direccion, admin, imagen) VALUES ($1, $2, $3, $4, $5, false, $6) returning *', [email, password, name, surname, address, imagen]);
     await pool.query('insert into pedido (comprando, fecha, id_usuario) values (true, current_date, $1) returning *', [response.rows[0].id_usuario]);
     //insertRequest(response.rows[0].id_usuario);
     if(response != undefined){

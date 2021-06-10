@@ -20,7 +20,6 @@ export class GamelistComponent implements OnInit {
     //Getting games
       this._apiDataService.getProducts().subscribe(data=>{
         this.gamelist = data;
-        console.log("QUE DISE CABESA");
       },
       error => {
         var errorMessage = error as any;

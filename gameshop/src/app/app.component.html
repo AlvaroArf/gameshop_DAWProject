@@ -2,7 +2,21 @@
   CABECERA
   <div class="login">
     <button class="btn btn-primary" [routerLink]="['/signin']" [routerLinkActivate]="['activado']" *ngIf="!token">Iniciar Sesión</button>
-    <button class="btn btn-primary" (click)="logOut()" *ngIf="token">Cerrar Sesión</button>
+    <button class="btn btn-primary" *ngIf="token">
+      <div class="dropdown">
+        <div class="dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
+          <img class="user-image" src="{{user_img[0]['imagen']}}">
+        </div>
+        <div class="dropdown-menu">
+          <div class="dropdown-item">
+            <a [routerLink]="['/profile', id_user]" [routerLinkActivate]="['activado']">Ver Perfil</a>
+          </div>
+          <div class="dropdown-item">
+            <a (click)="logOut()">Cerrar Sesión</a>
+          </div>
+        </div>
+      </div>
+    </button>
   </div>
 
 </header>

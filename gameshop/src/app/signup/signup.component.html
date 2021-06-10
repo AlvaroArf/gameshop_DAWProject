@@ -8,10 +8,19 @@
             <div class="card-body">
                 <form (submit)="signUp()">
                     <div class="form-group">
-                        <input type="text" [(ngModel)]="user.email" name="email" class="form-control"placeholder="Email" required autofocus>
+                        <input type="text" [(ngModel)]="user.name" name="name" class="form-control"placeholder="Nombre*" required autofocus>
                     </div>
                     <div class="form-group">
-                        <input type="password" [(ngModel)]="user.password" name="Password" class="form-control" placeholder="Password" required>
+                        <input type="text" [(ngModel)]="user.surname" name="surname" class="form-control"placeholder="Apellidos">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="user.email" name="email" class="form-control"placeholder="Email*" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="user.address" name="address" class="form-control"placeholder="Direccion*" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" [(ngModel)]="user.password" name="Password" class="form-control" placeholder="Password*" required>
                     </div>
                     <button type="submit" class="btn btn-primary">
                         Registrate

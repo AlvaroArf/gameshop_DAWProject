@@ -58,5 +58,16 @@ export class GameComponent implements OnInit {
       this._router.navigate(['/signin']);
     }
   }
+
+  sendToWishlist(id_producto){
+    console.log("WHISLISH")
+    this.id_user = localStorage.getItem('id');
+    this._apiDataService.setWishlist(this.id_user, id_producto).subscribe(data => {
+      this.info = data;
+    })
+
+
+
+  }
 }
 

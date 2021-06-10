@@ -16,11 +16,18 @@ export class AppComponent {
   title = 'gameshop';
   token = '';
   categories: any;
+  id_user: string;
+  user_img: any;
 
   constructor(private _router: Router, private _apiDataService: APIDataService) { }
 
   ngOnInit() {
+    this.id_user = localStorage.getItem('id');
     this.token = localStorage.getItem('token');
+    this._apiDataService.getUserById(this.id_user).subscribe(data => {
+      this.user_img = data;
+    })
+    
     this._apiDataService.getCategories().subscribe(data=>{
       this.categories = data;
     })

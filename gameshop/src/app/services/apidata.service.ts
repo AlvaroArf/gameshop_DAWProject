@@ -15,7 +15,6 @@ export class APIDataService {
   //PRODUCTS
   getProducts(): Observable<any>{
     this.data ="/api/products";
-    console.log("ON GETPRODUCTS");
     return this.http.get(this.data);
   }
   
@@ -72,9 +71,29 @@ export class APIDataService {
     return this.http.post<any>('/api/findUser', {"email": email});
   }
 
+  getUserById(id_usuario) {
+    return this.http.get('/api/user/' + id_usuario);
+  }
+
+  changeImage(id_usuario, imagen):Observable<any> {
+    return this.http.post('/api/user/changeImage', {"id_usuario": id_usuario, "imagen": imagen});
+  }
+
   //WISHLIST
   getWishlist(id_usuario): Observable<any> {
     return this.http.get('/api/wishlist/' + id_usuario);
+  }
+
+  setWishlist(id_usuario, id_producto): Observable<any> {
+    return this.http.post('/api/wishlist', {"id_usuario": id_usuario, "id_producto": id_producto});
+  }
+
+  deleteWishlist(id_usuario, id_producto): Observable<any> {
+    return this.http.post('/api/wishlistDel', {"id_usuario": id_usuario, "id_producto": id_producto});
+  }
+
+  orderWishlist(wishlist, id_usuario): Observable<any> {
+    return this.http.post('/api/wishlistOrder', {"wishlist": wishlist, "id_usuario": id_usuario});
   }
   
 }

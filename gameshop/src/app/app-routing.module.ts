@@ -10,6 +10,7 @@ import { CategoryComponent } from './category/category.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 
 import { AuthGuard } from "./auth.guard";
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   
@@ -42,6 +43,10 @@ const routes: Routes = [
     path: 'wishlist',
     component: WishlistComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'profile/:id_usuario',
+    component: ProfileComponent
   }
 ];
 

@@ -12,7 +12,10 @@ import { AppComponent } from '../app.component';
 export class SignupComponent implements OnInit {
 
   user = {
+    name: '',
+    surname: '',
     email: '',
+    address: '',
     password: ''
   }
 

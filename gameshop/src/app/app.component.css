@@ -10,6 +10,13 @@ header {
     color: white;
 }
 
+.user-image {
+    width: 3vw;
+    height: 6vh;
+    border-radius: 50px;
+    border-image: 1px black;
+} 
+
 .login button {
     position:absolute;
     right: 15vw;

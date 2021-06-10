@@ -1,4 +1,4 @@
-* {
+ul {
     margin-left: 2vw;
 }
 
@@ -27,4 +27,23 @@ img {
 
 .claro {
     background-color: rgb(236, 236, 236);
+}
+
+.empty-cart {
+    text-align: center;
+    font-size: 2vh;
+}
+
+.empty-cart img {
+    width: 10vw;
+    height: 22vh;
+    border-radius: 8px;
+    margin-bottom: 2vh;
+}
+
+
+.vaya {
+    margin-top: 6vh;
+    text-align: center;
+    font-size: 5vh;
 }

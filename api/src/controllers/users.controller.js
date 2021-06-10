@@ -31,7 +31,10 @@ const findUser = async (req, res) => {
 };
 
 const setUser = async (req, res) => {
-    const { email, password, nombre, apellidos, direccion } = req.body;
+    const { email, password, nombre, apellidos, direccion, imagen } = req.body;
+    if(imagen == ''){
+        imagen = 'https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png';
+    }
     const response = await pool.query('INSERT INTO usuario (email, password, nombre, apellidos, direccion) VALUES ($1, $2, $3, $4, $5) returning *', [email, password, nombre, apellidos, direccion]);
 
     console.log(response.rows);
@@ -53,11 +56,19 @@ const deleteUser = async (req, res) => {
     res.send('USER ' + id + ' DELETED');
 };
 
+const changeImage = async (req, res) => {
+    const {id_usuario, imagen } = req.body;
+    const response = await pool.query('update usuario set imagen = $2 where id_usuario = $1', [id_usuario, imagen]);
+
+    res.send('IMAGE CHANGED');
+}
+
 module.exports = {
     getUsers,
     getUserById,
     findUser,
     setUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    changeImage
 }

@@ -1,0 +1,32 @@
+.container-img{
+    position: relative;
+    display: inline-block;
+    margin-left: 2vw;
+}
+
+.container-img img {
+    border-radius: 50vh;
+    width: 17vw;
+    height: 35vh;
+}
+
+.name-surname {
+    position: absolute;
+    left:35vw;
+    top:28vh;
+}
+
+.name, .surname {
+    display:inline-block;
+}
+
+.info {
+    position: absolute;
+    left:34vw;
+    top:38vh;
+    font-size: 17px;
+}
+
+.info ul li {
+    margin-bottom: 2vh;
+}
