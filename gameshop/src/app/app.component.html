@@ -1,24 +1,32 @@
 <header>
   CABECERA
   <div class="login">
-    <button class="btn btn-primary" [routerLink]="['/signin']" [routerLinkActivate]="['activado']" *ngIf="!token">Iniciar Sesión</button>
-    <button class="btn btn-primary" *ngIf="token">
-      <div class="dropdown">
-        <div class="dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
-          <img class="user-image" src="{{user_img[0]['imagen']}}">
-        </div>
-        <div class="dropdown-menu">
-          <div class="dropdown-item">
-            <a [routerLink]="['/profile', id_user]" [routerLinkActivate]="['activado']">Ver Perfil</a>
-          </div>
-          <div class="dropdown-item">
-            <a (click)="logOut()">Cerrar Sesión</a>
-          </div>
-        </div>
+    <div class="d-flex justify-content-center">
+      <!--Button for sign up-->
+      <div class="text-center signin">
+        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#signupPage" *ngIf="!token">Sign up&nbsp;<i class="bi bi-person-plus"></i></a>
       </div>
-    </button>
+      <!--button for Signin Page-->
+      <div class="text-center signup">
+        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#signinPage" *ngIf="!token">Sign in&nbsp;<i class="bi bi-box-arrow-in-right"></i></a>
+      </div>
+      <button class="btn btn-primary" *ngIf="token">
+        <div class="dropdown">
+          <div class="dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
+            <img class="user-image" src="{{user_img[0]['imagen']}}">
+          </div>
+          <div class="dropdown-menu">
+            <div class="dropdown-item">
+              <a [routerLink]="['/profile', id_user]" [routerLinkActivate]="['activado']">Ver Perfil</a>
+            </div>
+            <div class="dropdown-item">
+              <a (click)="logOut()">Cerrar Sesión</a>
+            </div>
+          </div>
+        </div>
+      </button>
+    </div>
   </div>
-
 </header>
 
 <nav>
@@ -55,3 +63,85 @@
 
 
 <footer>PIE</footer>
+
+
+
+<!--Sign up page Content-->
+<div class="modal fade" id="signupPage">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header text-center">
+        <h4 class="modal-title text-center w-100 font-weight-bold">Registro</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-lable="close">&times;</button>
+      </div>
+      <form (submit)="signUp()">
+        <div class="modal-body mx-3">
+            <div class="md-form input-icons">
+              <i class="bi bi-person-circle icon"></i>
+              <input type="text" [(ngModel)]="user.nombre" name="nombre" class="form-control validate input-field" placeholder="Nombre">
+            </div>
+
+            <div class="md-form input-icons">
+              <i class="bi bi-people icon"></i>
+              <input type="text" [(ngModel)]="user.apellidos" name="apellidos" class="form-control validate input-field" placeholder="Apellidos">
+            </div>
+
+            <div class="md-form input-icons">
+              <i class="bi bi-envelope icon"></i>
+              <input type="email"[(ngModel)]="user.email"  name="email" class="form-control validate input-field" placeholder="Email">
+            </div>
+
+            <div class="md-form input-icons">
+              <i class="bi bi-geo-alt icon"></i>
+              <input type="text" [(ngModel)]="user.direccion" name="direccion" class="form-control validate input-field" placeholder="Direccion">
+            </div>
+
+            <div class="md-form input-icons">
+              <i class="bi bi-lock icon"></i>
+              <input type="password" [(ngModel)]="user.password" name="password" class="form-control validate input-field" placeholder="Contraseña">
+            </div>
+        </div>
+
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="submit" class="btn btn-primary">Registrarse</button>
+        </div>
+    </form>
+
+    </div>
+  </div>
+</div>
+
+<!--Sign In page Content-->
+<div class="modal fade" id="signinPage">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h3 class="modal-title w100 dark-grey-text font-weight-bold">Iniciar Sesión</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-lable="close">&times;</button>
+      </div>
+      <div class="modal-body mx-4">
+        <form (submit)="signIn()">
+          <div class="md-form input-icons">
+            <i class="bi bi-envelope icon"></i>  
+            <input type="email" [(ngModel)]="user.email" name="email" class="form-control validate input-field" placeholder="Tu Email" required>
+          </div>
+
+          <div class="md-form input-icons">
+            <i class="bi bi-lock icon"></i>
+            <input type="password" [(ngModel)]="user.password" name="password" class="form-control validate input-field" placeholder="Tu Contraseña" required>
+          </div>
+
+          <div class="text-center mb-3">
+            <button type="submit" class="btn btn-primary btn-block z-depth-1a">Entrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

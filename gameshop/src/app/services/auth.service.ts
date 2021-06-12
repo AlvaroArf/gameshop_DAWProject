@@ -9,7 +9,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   signUp(user) {
-    return this.http.post<any>('/api/signup', user);
+    return this.http.post<any>('/api/signup', {"name": user.nombre, "surname": user.apellidos, "email": user.email, "address": user.direccion, "password": user.password});
   }
 
   signIn(user) {
