@@ -97,8 +97,14 @@ export class APIDataService {
   }
 
   //RATING 
-  getRating(){}
-  setRating(){}
+  getRating(id_producto): Observable<any>{
+    return this.http.get('/api/rating/' + id_producto);
+  }
+
+  setRating(id_producto, id_usuario, comentario, puntuacion){
+    return this.http.post('/api/rating', {id_producto, id_usuario, comentario, puntuacion})
+  }
+
   userComment(id_usuario, id_producto): Observable<any> {
     return this.http.post('/api/rating/check', {"id_usuario": id_usuario, "id_producto": id_producto});
   }

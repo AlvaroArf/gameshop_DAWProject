@@ -11,7 +11,7 @@ const pool = new Pool({
 
 const getRating = async (req, res) => {
     const id_producto = req.params.id
-    const response = await pool.query('select * from valoracion where id_producto = $1', [id_producto]);
+    const response = await pool.query('select v.comentario, v.puntuacion, v.id_producto, u.nombre, u.apellidos, u.imagen from valoracion as v join usuario as u on u.id_usuario = v.id_usuario where v.id_producto = $1', [id_producto]);
 
     res.json(response.rows);
 }
@@ -27,6 +27,7 @@ const userComment = async (req, res) => {
     const { id_usuario, id_producto } = req.body;
     const response = await pool.query('select * from valoracion where id_usuario = $1 and id_producto = $2', [id_usuario, id_producto]);
 
+    console.log(response.rows);
     res.json(response.rows);
 }
 module.exports = {

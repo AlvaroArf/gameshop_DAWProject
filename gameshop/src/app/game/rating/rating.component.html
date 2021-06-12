@@ -14,9 +14,14 @@
             </form>
         </div>
     </div>  
-    <h2>Otras valoraciones</h2>
-    <div class="other-coments">
-
+    <h2>Valoraciones de usuarios</h2>
+    <div class="other-comments">
+       <div class="user-comment" *ngFor="let comment of comments">
+           <img class="user-image" src="{{comment.imagen}}">
+            <p class="username">{{comment.nombre}}&nbsp;{{comment.apellidos}}</p>
+            <p class="comentary">{{comment.comentario}}</p>
+            <img class="star"src="../../../assets/images/star.png"><span class="puntuacion">{{comment.puntuacion}}</span>
+       </div>
     </div>
 </div>
 

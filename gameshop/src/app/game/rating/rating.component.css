@@ -23,6 +23,7 @@
     border-style: solid;
     border-color: black;
     border-width: 2px;
+    padding-bottom: 2vh;
 }
 
 h2 {
@@ -47,4 +48,46 @@ h2 {
     left: 24vw;;
     width:8vw;
     margin-bottom: 2vh;
+}
+
+.other-comments {
+    padding: 1.5vh;
+    margin-top: 8vh;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+}
+
+.username {
+    margin: 0px;
+}
+
+.comentary, .rating {
+    display: inline-block;
+}
+
+.username, .comentary, .rating {
+    margin-left: 7vw;
+}
+
+.star {
+    width: 4vw;
+    bottom: 2vh;
+}
+
+.user-image {
+    border-radius: 50px;
+    position:absolute;
+    width: 6vw;
+}
+
+.star, .puntuacion {
+    text-align: right;
+    position: relative;
+    left:30vw;
+    margin-right: 1vw;
+}
+
+.puntuacion {
+    font-size: 3vw;
 }

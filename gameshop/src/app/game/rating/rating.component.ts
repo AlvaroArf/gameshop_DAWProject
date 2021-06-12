@@ -16,6 +16,8 @@ export class RatingComponent implements OnInit {
   currentRate : number = 3;
   token = '';
   commented: any;
+  comments: Array<any> = [];
+  info: any;
   
   constructor(private _route: ActivatedRoute, private _apiDataService: APIDataService) { 
     this.controlForm();
@@ -28,6 +30,10 @@ export class RatingComponent implements OnInit {
 
     //this.commented = this.userComment();
     console.log("commented: " +  this.commented);
+    this._apiDataService.getRating(this.id_producto).subscribe(data => {
+      console.log("DATA " + data);
+      this.comments = data;
+    })
   }
 
 
@@ -40,6 +46,10 @@ export class RatingComponent implements OnInit {
 
   sendRating() {
     console.log(this.form.value.rating + " - " + this.form.value.comentary + " - " + this.id_producto + " - " + this.id_usuario);
+    this._apiDataService.setRating(this.id_producto, this.id_usuario, this.form.value.comentary, this.form.value.rating).subscribe(data => {
+      this.info = data;
+    })
+    this.form.reset();
   }
 
   /*userComment() {
