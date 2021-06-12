@@ -75,36 +75,62 @@
         <h4 class="modal-title text-center w-100 font-weight-bold">Registro</h4>
         <button type="button" class="close" data-dismiss="modal" aria-lable="close">&times;</button>
       </div>
-      <form (submit)="signUp()">
-        <div class="modal-body mx-3">
-            <div class="md-form input-icons">
-              <i class="bi bi-person-circle icon"></i>
-              <input type="text" [(ngModel)]="user.nombre" name="nombre" class="form-control validate input-field" placeholder="Nombre">
+      <form [formGroup]="form1" (submit)="signUp()">
+        <div class="modal-body mx-3"> 
+            <div class="md-form input-icons" >
+              <i class="bi bi-person-circle icon" ></i>
+              <input type="text" formControlName="nombre" class="form-control validate input-field" placeholder="Nombre">
+              <div *ngIf="form1.get('nombre').errors && form1.get('nombre').touched">
+                <p class="error" *ngIf="form1.get('nombre').hasError('required')">
+                  <b>Es un campo requerido</b>
+                </p>
+              </div>
             </div>
 
             <div class="md-form input-icons">
               <i class="bi bi-people icon"></i>
-              <input type="text" [(ngModel)]="user.apellidos" name="apellidos" class="form-control validate input-field" placeholder="Apellidos">
+              <input type="text" formControlName="apellidos" class="form-control validate input-field" placeholder="Apellidos">
             </div>
 
             <div class="md-form input-icons">
               <i class="bi bi-envelope icon"></i>
-              <input type="email"[(ngModel)]="user.email"  name="email" class="form-control validate input-field" placeholder="Email">
+              <input type="email" formControlName="email" class="form-control validate input-field" placeholder="Email">
+              <div *ngIf="form1.get('email').errors && form1.get('email').touched">
+                <p class="error" *ngIf="form1.get('email').hasError('required')">
+                  <b>Es un campo requerido</b>
+                </p>
+                <p class="error" *ngIf="form1.get('email').hasError('email')">
+                  Debe introducir un email válido
+                </p>
+              </div>
             </div>
 
             <div class="md-form input-icons">
               <i class="bi bi-geo-alt icon"></i>
-              <input type="text" [(ngModel)]="user.direccion" name="direccion" class="form-control validate input-field" placeholder="Direccion">
+              <input type="text" formControlName="direccion" class="form-control validate input-field" placeholder="Direccion">
+              <div *ngIf="form1.get('direccion').errors && form1.get('direccion').touched">
+                <p class="error" *ngIf="form1.get('direccion').hasError('required')">
+                  <b>Es un campo requerido</b>
+                </p>
+              </div>
             </div>
 
             <div class="md-form input-icons">
               <i class="bi bi-lock icon"></i>
-              <input type="password" [(ngModel)]="user.password" name="password" class="form-control validate input-field" placeholder="Contraseña">
+              <input type="password" formControlName="password" class="form-control validate input-field" placeholder="Contraseña">
+              <div *ngIf="form1.get('password').errors && form1.get('password').touched">
+                <p class="error" *ngIf="form1.get('password').hasError('required')">
+                  <b>Es un campo requerido</b>
+                </p>
+                <p class="error" *ngIf="form1.get('password').hasError('minlength')">
+                  Debe tener al menos 6 carácteres
+                </p>
+              </div>
             </div>
         </div>
 
         <div class="modal-footer d-flex justify-content-center">
-          <button type="submit" class="btn btn-primary">Registrarse</button>
+          <button type="submit" class="btn btn-primary" [disabled]="form1.invalid">Registrarse</button>
         </div>
     </form>
 
@@ -121,19 +147,32 @@
         <button type="button" class="close" data-dismiss="modal" aria-lable="close">&times;</button>
       </div>
       <div class="modal-body mx-4">
-        <form (submit)="signIn()">
+        <form [formGroup]="form2" (submit)="signIn()">
           <div class="md-form input-icons">
             <i class="bi bi-envelope icon"></i>  
-            <input type="email" [(ngModel)]="user.email" name="email" class="form-control validate input-field" placeholder="Tu Email" required>
+            <input type="email" formControlName="email" class="form-control validate input-field" placeholder="Tu Email" required>
+            <div *ngIf="form2.get('email').errors && form2.get('email').touched">
+              <p class="error" *ngIf="form2.get('email').hasError('required')">
+                <b>Es un campo requerido</b>
+              </p>
+              <p class="error" *ngIf="form2.get('email').hasError('email')">
+                <b>Debe ser un email válido</b>
+              </p>
+            </div>
           </div>
 
           <div class="md-form input-icons">
             <i class="bi bi-lock icon"></i>
-            <input type="password" [(ngModel)]="user.password" name="password" class="form-control validate input-field" placeholder="Tu Contraseña" required>
+            <input type="password" formControlName="password" class="form-control validate input-field" placeholder="Tu Contraseña" required>
+            <div *ngIf="form2.get('password').errors && form2.get('password').touched">
+              <p class="error" *ngIf="form2.get('password').hasError('required')">
+                <b>Es un campo requerido</b>
+              </p>
+            </div>
           </div>
 
           <div class="text-center mb-3">
-            <button type="submit" class="btn btn-primary btn-block z-depth-1a">Entrar</button>
+            <button type="submit" class="btn btn-primary btn-block z-depth-1a" [disabled]="form2.invalid">Entrar</button>
           </div>
         </form>
       </div>

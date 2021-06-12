@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+
 import { APIDataService } from "./services/apidata.service";
 import { AuthService } from "./services/auth.service";
 
@@ -13,22 +15,23 @@ import { AuthService } from "./services/auth.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  form1: FormGroup;
+  form2: FormGroup;
   title = 'gameshop';
   token = '';
   categories: any;
   id_user: string;
   user_img: any;
-  user = {
-    nombre: '',
-    apellidos: '',
-    email: '',
-    direccion: '',
-    password: ''
-  }
+
 
   constructor(private _authService: AuthService, 
               private _router: Router,
-              private _apiDataService: APIDataService) { }
+              private _apiDataService: APIDataService) 
+              { 
+                  this.signUpForm();
+                  this.signInForm();
+              }
 
   ngOnInit() {
     this.id_user = localStorage.getItem('id');
@@ -53,13 +56,30 @@ export class AppComponent {
     this._router.navigate(['/category/' + id_categoria]);
   }
 
+  signUpForm() {
+    this.form1 = new FormGroup({
+      nombre: new FormControl('', [Validators.required]),
+      apellidos: new FormControl('', []),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      direccion: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)])
+    });
+  }
+
+  signInForm() {
+    this.form2 = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required])
+    });
+  }
+
   signIn(){
-    console.log("email: " + this.user.email + ", contraseña: " + this.user.password);
-    this._authService.signIn(this.user)
+    const user = this.form2.value;
+    this._authService.signIn(user)
       .subscribe(
         res => {
           localStorage.setItem('token', res.token);
-          this._apiDataService.findUser(this.user.email).subscribe(data => {
+          this._apiDataService.findUser(user.email).subscribe(data => {
             localStorage.setItem('id', data[0]['id_usuario']);
             window.location.reload();
         });
@@ -69,14 +89,14 @@ export class AppComponent {
   }
 
   signUp(){
-    console.log(this.user.apellidos);
-    this._authService.signUp(this.user)
+    const user = this.form1.value;
+    this._authService.signUp(user)
       .subscribe(
         res => {
           console.log(res)
           if(res != undefined){
             localStorage.setItem('token', res.token);
-            this._apiDataService.findUser(this.user.email).subscribe(data => {
+            this._apiDataService.findUser(user.email).subscribe(data => {
               localStorage.setItem('id', data[0]['id_usuario']); 
               window.location.reload();
             });
@@ -85,5 +105,6 @@ export class AppComponent {
         },
         err => console.log(err)
       )
+
   }
 }

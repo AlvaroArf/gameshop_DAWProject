@@ -107,3 +107,14 @@ footer {
     padding: 10px;
     text-align: center;
 }
+
+.error {
+    color: rgb(245, 5, 5);
+    background-color:#FE8585;
+    padding-left: 1vw;
+    font-size: 15px;
+}
+
+.is-danger{
+    color: red;
+}
