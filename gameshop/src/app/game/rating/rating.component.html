@@ -1,1 +1,24 @@
 <p>rating works!</p>
+<div class="container">
+    <div *ngIf="token">
+        <h2>Valoraciones</h2>
+        <div class="div-rating">
+            <form [formGroup]="form" (submit)="sendRating()">
+                <p class="p-rating">Tu valoración:</p>
+                <ngb-rating class="rating" formControlName="rating" [max]="5"></ngb-rating>
+                <br/>
+                <p class="p-rating" style="padding-right:4.4vw;" >Tu opinión:</p>
+                <textarea class="comment-rating" formControlName="comentary" cols="43" rows="2"placeholder="Escriba aquí su opinión..."></textarea>
+                <br/>
+                <button [disabled]="form.invalid" class="btn btn-primary" type="submit">Puntuar</button>
+            </form>
+        </div>
+    </div>  
+    <h2>Otras valoraciones</h2>
+    <div class="other-coments">
+
+    </div>
+</div>
+
+  
+ 

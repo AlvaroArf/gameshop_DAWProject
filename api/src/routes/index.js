@@ -61,4 +61,13 @@ router.post('/wishlist', setWishlist);
 router.post('/wishlistDel', delWishlist);
 router.post('/wishlistOrder', orderWishlist);
 
+
+//RATING ROUTES
+const { getRating, setRating, userComment } = require ('../controllers/rating.controller');
+
+router.get('/rating/:id', getRating);
+router.post('/rating', setRating);
+//router.post('/rating/check', userComment);
+
+
 module.exports = router;

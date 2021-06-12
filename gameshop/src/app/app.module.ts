@@ -21,6 +21,7 @@ import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from "./auth.guard";
 import { CategoryComponent } from './category/category.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { CategoryComponent } from './category/category.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    DragDropModule
+    DragDropModule,
+    NgbModule
   ],
   providers: [
     AuthGuard

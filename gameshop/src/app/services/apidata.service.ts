@@ -95,5 +95,12 @@ export class APIDataService {
   orderWishlist(wishlist, id_usuario): Observable<any> {
     return this.http.post('/api/wishlistOrder', {"wishlist": wishlist, "id_usuario": id_usuario});
   }
+
+  //RATING 
+  getRating(){}
+  setRating(){}
+  userComment(id_usuario, id_producto): Observable<any> {
+    return this.http.post('/api/rating/check', {"id_usuario": id_usuario, "id_producto": id_producto});
+  }
   
 }

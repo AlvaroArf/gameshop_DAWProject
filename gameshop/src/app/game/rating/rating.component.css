@@ -1,0 +1,50 @@
+.rating {
+    font-size:100px; 
+    color:orange;
+    margin-left: 5vw;
+}
+
+.p-rating {
+    display: inline-block;
+    position: relative;
+    bottom: 22px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    margin-left: 3vw;
+    padding-top:1vw;
+    padding-bottom:1vw;
+    padding-left: 3vw;
+    padding-right:3vw;
+}
+
+.container {
+    margin-top: 8vh;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+}
+
+h2 {
+    margin-top: 2vh;
+    text-align: center;
+}
+
+.div-rating {
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    margin: 2vw;
+}
+
+.comment-rating {
+    margin-left: 6vw;
+    font-size: 16px;
+}
+
+.div-rating button {
+    position:relative;
+    left: 24vw;;
+    width:8vw;
+    margin-bottom: 2vh;
+}

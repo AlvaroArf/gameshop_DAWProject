@@ -45,3 +45,7 @@ button {
     width: 8vh;
     left: 29vw;
 }
+
+app-rating {
+    margin:2vw;
+}
