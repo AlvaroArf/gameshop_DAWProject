@@ -1,9 +1,15 @@
 <p>game works!</p>
 <img src="{{game[0]['imagen']}}" id="portada">
-<img src="https://img.icons8.com/emoji/452/red-heart.png" class="heart" (click)="sendToWishlist(game[0]['id_producto'])"/>
+<img *ngIf='token' src="https://img.icons8.com/emoji/452/red-heart.png" class="heart" (click)="sendToWishlist(game[0]['id_producto'])"/>
+<img *ngIf='!token' src="https://img.icons8.com/emoji/452/red-heart.png" class="heart" data-toggle="modal" data-target="#signinPage"/>
 <h2>{{game[0]['nombre_producto']}}</h2>
 <p class="descripcion">{{game[0]['descripcion']}}</p>
-<p class="precio"><b>{{game[0]['precio']}}</b></p>
-<button class="btn btn-warning" (click)="sendToCart(game[0]['id_producto'])">Enviar al carrito</button>
+<p class="precio"><b>{{game[0]['precio']}}€</b></p>
+<div *ngIf="token">
+    <button class="btn btn-warning" (click)="sendToCart(game[0]['id_producto'])">Enviar al carrito</button>
+</div>
+<div *ngIf="!token">
+    <button class="btn btn-warning" data-toggle="modal" data-target="#signinPage">Enviar al carrito</button>
+</div>
 
 <app-rating></app-rating>

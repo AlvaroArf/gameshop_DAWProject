@@ -58,6 +58,10 @@ h2 {
     border-width: 2px;
 }
 
+.user-comment {
+    padding: 1vh;
+}
+
 .username {
     margin: 0px;
 }
@@ -67,27 +71,34 @@ h2 {
 }
 
 .username, .comentary, .rating {
-    margin-left: 7vw;
+    margin-left: 5vw;
 }
 
 .star {
-    width: 4vw;
-    bottom: 2vh;
+    width: 3vw;
+}
+
+.puntuacion {
+    font-size: 2vw;
+}
+
+.star, .puntuacion {
+    position: relative;
+    float:right;
+    bottom:1vh;
+    right:1vw;
 }
 
 .user-image {
     border-radius: 50px;
     position:absolute;
-    width: 6vw;
+    width: 4vw;
 }
 
-.star, .puntuacion {
-    text-align: right;
-    position: relative;
-    left:30vw;
-    margin-right: 1vw;
+.oscuro {
+    background-color: rgb(194, 194, 194);
 }
 
-.puntuacion {
-    font-size: 3vw;
+.claro {
+    background-color: rgb(236, 236, 236);
 }

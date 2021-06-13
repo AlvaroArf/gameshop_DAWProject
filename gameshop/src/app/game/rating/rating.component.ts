@@ -15,7 +15,7 @@ export class RatingComponent implements OnInit {
   id_usuario: string;
   currentRate : number = 3;
   token = '';
-  commented: any;
+  commented: any = '';
   comments: Array<any> = [];
   info: any;
   
@@ -28,10 +28,9 @@ export class RatingComponent implements OnInit {
     this.id_usuario = localStorage.getItem('id');
     this.token = localStorage.getItem('token');
 
-    //this.commented = this.userComment();
-    console.log("commented: " +  this.commented);
+    this.commented = '';
+    this.userComment();
     this._apiDataService.getRating(this.id_producto).subscribe(data => {
-      console.log("DATA " + data);
       this.comments = data;
     })
   }
@@ -40,24 +39,21 @@ export class RatingComponent implements OnInit {
   controlForm() {
     this.form = new FormGroup({
       rating: new FormControl(null ,Validators.required),
-      comentary: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(50)])
+      comentary: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(70)])
     });
   }
 
   sendRating() {
-    console.log(this.form.value.rating + " - " + this.form.value.comentary + " - " + this.id_producto + " - " + this.id_usuario);
     this._apiDataService.setRating(this.id_producto, this.id_usuario, this.form.value.comentary, this.form.value.rating).subscribe(data => {
       this.info = data;
     })
     this.form.reset();
+    this.ngOnInit();
   }
 
-  /*userComment() {
+  userComment() {
     this._apiDataService.userComment(this.id_usuario, this.id_producto).subscribe(data => {
-      if(data[0]){
-        return false;
-      }
-      return true;
+      this.commented = data;
     })    
-  }*/
+  }
 }

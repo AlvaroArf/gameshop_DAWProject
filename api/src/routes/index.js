@@ -67,7 +67,7 @@ const { getRating, setRating, userComment } = require ('../controllers/rating.co
 
 router.get('/rating/:id', getRating);
 router.post('/rating', setRating);
-//router.post('/rating/check', userComment);
+router.post('/rating/check', userComment);
 
 
 module.exports = router;

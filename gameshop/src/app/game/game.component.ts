@@ -15,6 +15,7 @@ export class GameComponent implements OnInit {
   public info: any;
   public id:string;
   public id_user;
+  token = '';
 
 
   constructor
@@ -24,6 +25,7 @@ export class GameComponent implements OnInit {
     private _authService: AuthService,
     private _router: Router
   ) { 
+      this.token = localStorage.getItem('token');
       this.id = this._route.snapshot.paramMap.get('id_producto');
     }
 
@@ -40,7 +42,7 @@ export class GameComponent implements OnInit {
   }
 
   sendToCart(id_producto){
-    if (this._authService.loggedIn()){
+    //if (this._authService.loggedIn()){
       this.id_user = localStorage.getItem('id');
       this._apiDataService.productExist(this.id_user, id_producto).subscribe(data => {
         console.log("EL DATA" + data[0]);
@@ -54,9 +56,11 @@ export class GameComponent implements OnInit {
           })
         }
       })
-    } else {
-      this._router.navigate(['/signin']);
-    }
+    /*} else {
+      //this._router.navigate(['/signin']);
+      console.log("ESTO SON COSAS" + document.getElementById("signinPage"));
+      document.getElementById("signinPage").style.visibility = "show";
+    }*/
   }
 
   sendToWishlist(id_producto){

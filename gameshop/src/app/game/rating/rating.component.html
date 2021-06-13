@@ -1,7 +1,7 @@
 <p>rating works!</p>
 <div class="container">
-    <div *ngIf="token">
-        <h2>Valoraciones</h2>
+    <div *ngIf="token && commented == ''">
+        <h2>Valorar Producto</h2>
         <div class="div-rating">
             <form [formGroup]="form" (submit)="sendRating()">
                 <p class="p-rating">Tu valoración:</p>
@@ -16,11 +16,11 @@
     </div>  
     <h2>Valoraciones de usuarios</h2>
     <div class="other-comments">
-       <div class="user-comment" *ngFor="let comment of comments">
+       <div class="user-comment" *ngFor="let comment of comments;let impar= odd;let par = even;" [ngClass]="{oscuro:par,claro:impar}">
            <img class="user-image" src="{{comment.imagen}}">
             <p class="username">{{comment.nombre}}&nbsp;{{comment.apellidos}}</p>
             <p class="comentary">{{comment.comentario}}</p>
-            <img class="star"src="../../../assets/images/star.png"><span class="puntuacion">{{comment.puntuacion}}</span>
+            <span class="puntuacion">{{comment.puntuacion}}</span><img class="star"src="../../../assets/images/star.png">
        </div>
     </div>
 </div>
