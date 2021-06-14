@@ -21,7 +21,7 @@ router.get('/products', getProducts);
 router.get('/products/:id', getProductsByCategory);
 router.get('/product/:id', getProductById);
 router.post('/product', setProduct);
-router.put('/product/:id', updateProduct);
+router.put('/product', updateProduct);
 router.delete('/product/:id', deleteProduct);
 
 

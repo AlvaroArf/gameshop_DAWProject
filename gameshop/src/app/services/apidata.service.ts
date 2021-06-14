@@ -29,6 +29,19 @@ export class APIDataService {
     return this.http.get(this.data);
   }
 
+  setProduct(product) {
+    return this.http.post('/api/product', {"name": product.nombre, "desc": product.descripcion, 
+                                          "price": product.precio, "stock": product.stock,
+                                          "image": product.imagen, "id_category": product.categoria})
+  }
+
+  updateProduct(product) {
+    return this.http.put('/api/product', {"id_producto": product.id, "stock": product.stock, "precio": product.precio})
+  }
+
+  deleteProduct(id_producto) {
+    return this.http.delete('/api/product/' + id_producto);
+  }
   //CATEGORIES
   getCategories(): Observable<any>{
     this.data = "/api/categories";

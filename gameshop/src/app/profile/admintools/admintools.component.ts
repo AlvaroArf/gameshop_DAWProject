@@ -17,8 +17,10 @@ export class AdmintoolsComponent implements OnInit {
 
   constructor(private _apiDataService: APIDataService) { 
     this.addUserForm();
+    this.addProductForm();
   }
   form1: FormGroup;
+  form2: FormGroup;
 
   ngOnInit(): void {
   }
@@ -75,6 +77,43 @@ export class AdmintoolsComponent implements OnInit {
       this.users = '';
       this.games = data;
     })
+  }
+
+  setProduct(){
+    console.log(this.form2.value)
+    this._apiDataService.setProduct(this.form2.value).subscribe(data => {
+      this.info = data;
+    })
+    this.getProducts();
+    this.form2.reset();
+  }
+
+  updateProduct() {
+    console.log(this.form2.value);
+    this._apiDataService.updateProduct(this.form2.value).subscribe(data => {
+      this.info = data;
+    })
+    this.getProducts();
+    this.form2.reset();
+  }
+
+  deleteProduct(id_producto) {
+    this._apiDataService.deleteProduct(id_producto).subscribe(data => {
+      this.info = data;
+    })
+    this.getProducts();
+  }
+
+  addProductForm() {
+    this.form2 = new FormGroup({
+      id: new FormControl('', []),
+      nombre: new FormControl('', [Validators.required]),
+      descripcion: new FormControl('', [Validators.required]),
+      precio: new FormControl('', [Validators.required]),
+      stock: new FormControl('', [Validators.required]),
+      imagen: new FormControl('', [Validators.required]),
+      categoria: new FormControl('', [Validators.required])
+    });
   }
 
   //CATEGORIES

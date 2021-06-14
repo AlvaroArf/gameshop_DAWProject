@@ -59,6 +59,7 @@
 			</div>
 		</div>        
     </div>
+	
 	<div class="container" *ngIf="games">
 		<div class="table-responsive">
 			<div class="table-wrapper">
@@ -68,7 +69,8 @@
 							<h2>Administrar <b>Juegos</b></h2>
 						</div>
 						<div class="col-xs-6">
-							<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="bi bi-plus-circle"></i><span>Añadir Juego</span></a>
+							<a href="#addProductModal" class="btn btn-success" data-toggle="modal"><i class="bi bi-plus-circle"></i><span>Añadir Juego</span></a>
+							<a href="#editProductModal" class="btn btn-warning" data-toggle="modal"><i class="bi bi-pen-fill" data-toggle="tooltip" title="Edit"></i><span>Editar Juego</span></a>
 						</div>
 					</div>
 				</div>
@@ -82,6 +84,7 @@
                             <th>Stock</th>
                             <th>Categoría</th>
                             <th>Imagen</th>
+							<th>Acción</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -94,8 +97,7 @@
                             <td>{{game.id_categoria}}</td>
 							<td>{{game.imagen}}</td>
 							<td>
-								<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="bi bi-pen-fill" data-toggle="tooltip" title="Edit"></i></a>
-								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="bi bi-trash-fill" data-toggle="tooltip" title="Delete"></i></a>
+								<a class="delete" (click)='deleteProduct(game.id_producto)'><i class="bi bi-trash-fill" title="Delete"></i></a>
 							</td>
 						</tr>
 					</tbody>
@@ -140,7 +142,6 @@
 		</div>        
     </div>
 
-	
 
 	<!--USER MODALS-->
 	<!--ADD-->
@@ -149,7 +150,7 @@
 		  <div class="modal-content">
 	  
 			<div class="modal-header text-center">
-			  <h4 class="modal-title text-center w-100 font-weight-bold">Registro</h4>
+			  <h4 class="modal-title text-center w-100 font-weight-bold">Añadir Usuario</h4>
 			  <button type="button" class="close" data-dismiss="modal" aria-lable="close">&times;</button>
 			</div>
 			<form [formGroup]="form1" (submit)="setUser()">
@@ -280,6 +281,139 @@
 						  <p class="error">
 							  <b>Debe ser 'true' o 'false'</b>
 						  </p>
+					  </div>
+					</div>
+				</div>
+		
+				<div class="modal-footer d-flex justify-content-center">
+				  <button type="submit" class="btn btn-primary" >Editar</button>
+				</div>
+		  </form>
+	  
+		  </div>
+		</div>
+	  </div>
+
+
+	<!--PRODUCT MODALS-->
+	<!--ADD-->
+	<div class="modal fade" id="addProductModal">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+	  
+			<div class="modal-header text-center">
+			  <h4 class="modal-title text-center w-100 font-weight-bold">Añadir Producto</h4>
+			  <button type="button" class="close" data-dismiss="modal" aria-lable="close">&times;</button>
+			</div>
+			<form [formGroup]="form2" (submit)="setProduct()">
+			  <div class="modal-body mx-3"> 
+				  <div class="md-form input-icons" >
+					<i class="bi bi-person-circle icon" ></i>
+					<input type="text" formControlName="nombre" class="form-control validate input-field" placeholder="Nombre">
+					<div *ngIf="form2.get('nombre').errors && form2.get('nombre').touched">
+					  <p class="error" *ngIf="form2.get('nombre').hasError('required')">
+						<b>Es un campo requerido</b>
+					  </p>
+					</div>
+				  </div>
+	  
+				  <div class="md-form input-icons">
+					<i class="bi bi-chat-right-dots icon"></i>
+					<input type="text" formControlName="descripcion" class="form-control validate input-field" placeholder="Descripcion">
+					<div *ngIf="form2.get('descripcion').errors && form2.get('descripcion').touched">
+						<p class="error" *ngIf="form2.get('descripcion').hasError('required')">
+						  <b>Es un campo requerido</b>
+						</p>
+					</div>
+				  </div>
+	  
+				  <div class="md-form input-icons">
+					<i class="bi bi-currency-euro icon"></i>
+					<input type="text" formControlName="precio" class="form-control validate input-field" placeholder="Precio">
+					<div *ngIf="form2.get('precio').errors && form2.get('precio').touched">
+					  <p class="error" *ngIf="form2.get('precio').hasError('required')">
+						<b>Es un campo requerido</b>
+					  </p>
+					</div>
+				  </div>
+	  
+				  <div class="md-form input-icons">
+					<i class="bi bi-box-seam icon"></i>
+					<input type="text" formControlName="stock" class="form-control validate input-field" placeholder="Stock">
+					<div *ngIf="form2.get('stock').errors && form2.get('stock').touched">
+					  <p class="error" *ngIf="form2.get('stock').hasError('required')">
+						<b>Es un campo requerido</b>
+					  </p>
+					</div>
+				  </div>
+	  
+				  <div class="md-form input-icons">
+					<i class="bi bi-link icon"></i>
+					<input type="text" formControlName="imagen" class="form-control validate input-field" placeholder="URL">
+					<div *ngIf="form2.get('imagen').errors && form2.get('imagen').touched">
+					  <p class="error" *ngIf="form2.get('imagen').hasError('required')">
+						<b>Es un campo requerido</b>
+					  </p>
+					</div>
+				  </div>
+				  <div class="md-form input-icons">
+					<i class="bi bi-file-binary icon"></i>
+					<input type="text" formControlName="categoria" class="form-control validate input-field" placeholder="ID Categoria">
+					<div *ngIf="form2.get('categoria').errors && form2.get('categoria').touched">
+						<p class="error" *ngIf="form2.get('categoria').hasError('required')">
+							<b>Es un campo requerido</b>
+						</p>
+					</div>
+				  </div>
+			  </div>
+	  
+			  <div class="modal-footer d-flex justify-content-center">
+				<button type="submit" class="btn btn-primary" [disabled]="form2.invalid">Añadir</button>
+			  </div>
+		  </form>
+	  
+		  </div>
+		</div>
+	  </div>
+
+	<!--MODIFY-->
+	<div class="modal fade" id="editProductModal">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+	  
+			<div class="modal-header text-center">
+			  <h4 class="modal-title text-center w-100 font-weight-bold">Editar Producto</h4>
+			  <button type="button" class="close" data-dismiss="modal" aria-lable="close">&times;</button>
+			</div>
+			<form [formGroup]="form2" (submit)="updateProduct()">
+				<div class="modal-body mx-3"> 
+					<div class="md-form input-icons" >
+						<i class="bi bi-file-binary icon"></i>
+						<input type="text" formControlName="id" class="form-control validate input-field" placeholder="ID">
+						<div *ngIf="form2.get('id').errors && form2.get('id').touched">
+						  <p class="error" *ngIf="form2.get('id').hasError('required')">
+							<b>Es un campo requerido</b>
+						  </p>
+						</div>
+					</div>
+
+					<div class="md-form input-icons" >
+						<i class="bi bi-currency-euro icon"></i>
+					  <input type="text" formControlName="precio" class="form-control validate input-field" placeholder="Precio">
+					  <div *ngIf="form2.get('precio').errors && form2.get('precio').touched">
+						<p class="error" *ngIf="form2.get('precio').hasError('required')">
+						  <b>Es un campo requerido</b>
+						</p>
+					  </div>
+					</div>
+
+					<div class="md-form input-icons">
+					   <i class="bi bi-box-seam icon"></i>
+					  <input type="text" formControlName="stock" class="form-control validate input-field" placeholder="Stock">
+					  <div *ngIf="form2.get('stock').errors && form2.get('stock').touched">
+						<p class="error" *ngIf="form2.get('stock').hasError('required')">
+						  <b>Es un campo requerido</b>
+						</p>
 					  </div>
 					</div>
 				</div>
