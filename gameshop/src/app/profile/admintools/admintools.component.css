@@ -1,7 +1,7 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
 
-.container {
+.content {
     text-align: center;
 }
   
@@ -214,35 +214,41 @@ table.table .avatar {
     box-shadow: none;
     background: #ddd;
 }
-/* Modal styles */
-.modal .modal-dialog {
-    max-width: 400px;
+
+/**** MODAL CSS ****/
+
+.input-icons i {
+    position: absolute;
+    left:1vw;
 }
-.modal .modal-header, .modal .modal-body, .modal .modal-footer {
-    padding: 20px 30px;
+  
+.input-icons {
+    width: 100%;
+    margin-bottom: 10px;
+
 }
-.modal .modal-content {
-    border-radius: 3px;
+  
+.icon {
+    padding: 10px;
+    color: green;
+    min-width: 50px;
+    text-align: center;
 }
-.modal .modal-footer {
-    background: #ecf0f1;
-    border-radius: 0 0 3px 3px;
+  
+.input-field {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
 }
-.modal .modal-title {
-    display: inline-block;
+
+.error {
+    color: rgb(245, 5, 5);
+    background-color:#FE8585;
+    padding-left: 1vw;
+    font-size: 15px;
 }
-.modal .form-control {
-    border-radius: 2px;
-    box-shadow: none;
-    border-color: #dddddd;
+
+.is-danger{
+    color: red;
 }
-.modal textarea.form-control {
-    resize: vertical;
-}
-.modal .btn {
-    border-radius: 2px;
-    min-width: 100px;
-}	
-.modal form label {
-    font-weight: normal;
-}	
+

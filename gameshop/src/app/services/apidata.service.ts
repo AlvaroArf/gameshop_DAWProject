@@ -71,6 +71,23 @@ export class APIDataService {
     return this.http.get('/api/users');
   }
 
+  setUser(user) {
+    return this.http.post('/api/user', {"email": user.email, "password": user.password, 
+                                        "nombre": user.nombre, "apellidos": user.apellidos, 
+                                        "direccion": user.direccion, "admin": user.admin})
+  }
+
+  updateUser(user) {
+    console.log("API"  +user.id_usuario);
+    return this.http.put('/api/user', {"id_usuario": user.id, "nombre": user.nombre, 
+                                      "apellidos": user.apellidos,"email": user.email,
+                                      "admin": user.admin});
+  }
+
+  deleteUser(id_user) {
+    return this.http.delete('/api/user/' + id_user);
+  }
+
   findUser(email) {
     return this.http.post<any>('/api/findUser', {"email": email});
   }

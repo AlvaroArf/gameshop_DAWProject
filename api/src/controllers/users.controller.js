@@ -31,26 +31,28 @@ const findUser = async (req, res) => {
 };
 
 const setUser = async (req, res) => {
-    const { email, password, nombre, apellidos, direccion, imagen } = req.body;
+    const { email, password, nombre, apellidos, direccion, imagen, admin } = req.body;
     if(imagen == ''){
         imagen = 'https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png';
     }
-    const response = await pool.query('INSERT INTO usuario (email, password, nombre, apellidos, direccion) VALUES ($1, $2, $3, $4, $5) returning *', [email, password, nombre, apellidos, direccion]);
+    const response = await pool.query('INSERT INTO usuario (email, password, nombre, apellidos, direccion, admin) VALUES ($1, $2, $3, $4, $5, $6) returning *', [email, password, nombre, apellidos, direccion, admin]);
 
     console.log(response.rows);
     res.send('USER CREATED');
 };
 
 const updateUser = async (req, res) => {
-    const id = req.params.id;
-    const { email, nombre, apellidos } = req.body;
-    const response = await pool.query('UPDATE usuario SET nombre = $1, apellidos = $2, email = $3 WHERE id_usuario = $4', [nombre, apellidos, email, id]);
+    const { id_usuario, email, nombre, apellidos, admin } = req.body;
+    const response = await pool.query('UPDATE usuario SET nombre = $1, apellidos = $2, email = $3, admin = $4 WHERE id_usuario = $5', [nombre, apellidos, email, admin, id_usuario ]);
     console.log(response);
-    res.json('USER '+ id + ' UPDATED');
+    res.send('USER '+ id_usuario + ' UPDATED');
 };
 
 const deleteUser = async (req, res) => {
     const id = req.params.id;
+    const response1 = await pool.query('delete from pedido where id_usuario = $1', [id]);
+    const response2 = await pool.query('delete from valoracion where id_usuario = $1', [id]);
+    const response3 = await pool.query('delete from lista_deseos where id_usuario = $1', [id]);
     const response = await pool.query('DELETE FROM usuario WHERE id_usuario = $1', [id]);
 
     res.send('USER ' + id + ' DELETED');

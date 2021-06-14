@@ -1,61 +1,37 @@
 <p>admintools works!</p>
-<div class="container">
+<div class="content">
     <h2>Panel de Administración</h2>
-    <div class="services">
+    <div class="services" (click)='getUsers()'>
         <i class="bi bi-people"></i>
         <p>Usuarios</p>
     </div>
-    <div class="services">
+    <div class="services" (click)='getProducts()'>
         <i class="bi bi-controller"></i>
         <p>Productos</p>
     </div>
-    <div class="services">
+    <div class="services" (click)='getCategories()'>
         <i class="bi bi-funnel"></i>
         <p>Categorias</p>
     </div>
-    <!--
-    <button class="btn btn-primary">Add</button>
-    <table>
-        <tr>
-            <th>Nombre</th>
-            <th>Apellidos</th>
-            <th>Email</th>
-            <th>Contraseña</th>
-            <th>Dirección</th>
-            <th>Admin</th>
-            <th>Acción</th>
-        </tr>
-        <tr *ngFor="let user of content">
-            <td>{{user.nombre}}</td>
-            <td>{{user.apellidos}}</td>
-            <td>{{user.email}}</td>
-            <td>{{user.password}}</td>
-            <td>{{user.direccion}}</td>
-            <td>{{user.admin}}</td>
-            <td>
-                <button>Modificar</button>
-                <button>Borrar</button>
-            </td>
-        </tr>
-    </table>
-    -->
 
-    <div class="container">
+    <div class="container" *ngIf="users">
 		<div class="table-responsive">
 			<div class="table-wrapper">
 				<div class="table-title">
 					<div class="row">
 						<div class="col-xs-6">
-							<h2>Manage <b>Employees</b></h2>
+							<h2>Administrar <b>Usuarios</b></h2>
 						</div>
 						<div class="col-xs-6">
-							<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="bi bi-plus-circle"></i><span>Add New Employee</span></a>
+							<a href="#addUserModal" class="btn btn-success" data-toggle="modal"><i class="bi bi-plus-circle"></i><span>Añadir Usuario</span></a>
+							<a href="#editUserModal" class="btn btn-warning" data-toggle="modal"><i class="bi bi-pen-fill" data-toggle="tooltip" title="Edit"></i><span>Editar Usuario</span></a>
 						</div>
 					</div>
 				</div>
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
+							<th>ID</th>
 							<th>Nombre</th>
                             <th>Apellidos</th>
                             <th>Email</th>
@@ -66,13 +42,57 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr *ngFor="let user of content">
+						<tr *ngFor="let user of users">
+							<td>{{user.id_usuario}}</td>
 							<td>{{user.nombre}}</td>
                             <td>{{user.apellidos}}</td>
                             <td>{{user.email}}</td>
                             <td>{{user.password}}</td>
                             <td>{{user.direccion}}</td>
                             <td>{{user.admin}}</td>
+							<td>
+								<a class="delete" (click)='deleteUser(user.id_usuario)'><i class="bi bi-trash-fill" title="Delete"></i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>        
+    </div>
+	<div class="container" *ngIf="games">
+		<div class="table-responsive">
+			<div class="table-wrapper">
+				<div class="table-title">
+					<div class="row">
+						<div class="col-xs-6">
+							<h2>Administrar <b>Juegos</b></h2>
+						</div>
+						<div class="col-xs-6">
+							<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="bi bi-plus-circle"></i><span>Añadir Juego</span></a>
+						</div>
+					</div>
+				</div>
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th>Categoría</th>
+                            <th>Imagen</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let game of games">
+							<td>{{game.id_producto}}</td>
+							<td>{{game.nombre_producto}}</td>
+                            <td>{{game.descripcion}}</td>
+                            <td>{{game.precio}}</td>
+                            <td>{{game.stock}}</td>
+                            <td>{{game.id_categoria}}</td>
+							<td>{{game.imagen}}</td>
 							<td>
 								<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="bi bi-pen-fill" data-toggle="tooltip" title="Edit"></i></a>
 								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="bi bi-trash-fill" data-toggle="tooltip" title="Delete"></i></a>
@@ -83,95 +103,193 @@
 			</div>
 		</div>        
     </div>
-	<!-- Edit Modal HTML -->
-	<div id="addEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form>
-					<div class="modal-header">						
-						<h4 class="modal-title">Add Employee</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">					
-						<div class="form-group">
-							<label>Name</label>
-							<input type="text" class="form-control" required>
+	<div class="container" *ngIf="categories">
+		<div class="table-responsive">
+			<div class="table-wrapper">
+				<div class="table-title">
+					<div class="row">
+						<div class="col-xs-6">
+							<h2>Administrar <b>Categorias</b></h2>
 						</div>
-						<div class="form-group">
-							<label>Email</label>
-							<input type="email" class="form-control" required>
+						<div class="col-xs-6">
+							<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="bi bi-plus-circle"></i><span>Añadir Categoria</span></a>
 						</div>
-						<div class="form-group">
-							<label>Address</label>
-							<textarea class="form-control" required></textarea>
-						</div>
-						<div class="form-group">
-							<label>Phone</label>
-							<input type="text" class="form-control" required>
-						</div>					
 					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-success" value="Add">
-					</div>
-				</form>
+				</div>
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nombre</th>
+                            <th>Descripcion</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let category of categories">
+							<td>{{category.id_categoria}}</td>
+							<td>{{category.nombre_categoria}}</td>
+                            <td>{{category.descripcion_categoria}}</td>
+							<td>
+								<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="bi bi-pen-fill" data-toggle="tooltip" title="Edit"></i></a>
+								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="bi bi-trash-fill" data-toggle="tooltip" title="Delete"></i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
-		</div>
-	</div>
-	<!-- Edit Modal HTML -->
-	<div id="editEmployeeModal" class="modal fade">
+		</div>        
+    </div>
+
+	
+
+	<!--USER MODALS-->
+	<!--ADD-->
+	<div class="modal fade" id="addUserModal">
 		<div class="modal-dialog">
-			<div class="modal-content">
-				<form>
-					<div class="modal-header">						
-						<h4 class="modal-title">Edit Employee</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">					
-						<div class="form-group">
-							<label>Name</label>
-							<input type="text" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Email</label>
-							<input type="email" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Address</label>
-							<textarea class="form-control" required></textarea>
-						</div>
-						<div class="form-group">
-							<label>Phone</label>
-							<input type="text" class="form-control" required>
-						</div>					
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-info" value="Save">
-					</div>
-				</form>
+		  <div class="modal-content">
+	  
+			<div class="modal-header text-center">
+			  <h4 class="modal-title text-center w-100 font-weight-bold">Registro</h4>
+			  <button type="button" class="close" data-dismiss="modal" aria-lable="close">&times;</button>
 			</div>
+			<form [formGroup]="form1" (submit)="setUser()">
+			  <div class="modal-body mx-3"> 
+				  <div class="md-form input-icons" >
+					<i class="bi bi-person-circle icon" ></i>
+					<input type="text" formControlName="nombre" class="form-control validate input-field" placeholder="Nombre">
+					<div *ngIf="form1.get('nombre').errors && form1.get('nombre').touched">
+					  <p class="error" *ngIf="form1.get('nombre').hasError('required')">
+						<b>Es un campo requerido</b>
+					  </p>
+					</div>
+				  </div>
+	  
+				  <div class="md-form input-icons">
+					<i class="bi bi-people icon"></i>
+					<input type="text" formControlName="apellidos" class="form-control validate input-field" placeholder="Apellidos">
+				  </div>
+	  
+				  <div class="md-form input-icons">
+					<i class="bi bi-envelope icon"></i>
+					<input type="email" formControlName="email" class="form-control validate input-field" placeholder="Email">
+					<div *ngIf="form1.get('email').errors && form1.get('email').touched">
+					  <p class="error" *ngIf="form1.get('email').hasError('required')">
+						<b>Es un campo requerido</b>
+					  </p>
+					  <p class="error" *ngIf="form1.get('email').hasError('email')">
+						Debe introducir un email válido
+					  </p>
+					</div>
+				  </div>
+	  
+				  <div class="md-form input-icons">
+					<i class="bi bi-geo-alt icon"></i>
+					<input type="text" formControlName="direccion" class="form-control validate input-field" placeholder="Direccion">
+					<div *ngIf="form1.get('direccion').errors && form1.get('direccion').touched">
+					  <p class="error" *ngIf="form1.get('direccion').hasError('required')">
+						<b>Es un campo requerido</b>
+					  </p>
+					</div>
+				  </div>
+	  
+				  <div class="md-form input-icons">
+					<i class="bi bi-lock icon"></i>
+					<input type="password" formControlName="password" class="form-control validate input-field" placeholder="Contraseña">
+					<div *ngIf="form1.get('password').errors && form1.get('password').touched">
+					  <p class="error" *ngIf="form1.get('password').hasError('required')">
+						<b>Es un campo requerido</b>
+					  </p>
+					  <p class="error" *ngIf="form1.get('password').hasError('minlength')">
+						Debe tener al menos 6 carácteres
+					  </p>
+					</div>
+				  </div>
+				  <div class="md-form input-icons">
+					<i class="bi bi-person-plus icon"></i>
+					<input type="text" formControlName="admin" class="form-control validate input-field" placeholder="True | False">
+					<div *ngIf="form1.get('admin').errors && form1.get('admin').touched">
+						<p class="error">
+							<b>Debe ser 'true' o 'false'</b>
+						</p>
+					</div>
+				  </div>
+			  </div>
+	  
+			  <div class="modal-footer d-flex justify-content-center">
+				<button type="submit" class="btn btn-primary" [disabled]="form1.invalid">Registrarse</button>
+			  </div>
+		  </form>
+	  
+		  </div>
 		</div>
-	</div>
-	<!-- Delete Modal HTML -->
-	<div id="deleteEmployeeModal" class="modal fade">
+	  </div>
+
+	<!--MODIFY-->
+	<div class="modal fade" id="editUserModal">
 		<div class="modal-dialog">
-			<div class="modal-content">
-				<form>
-					<div class="modal-header">						
-						<h4 class="modal-title">Delete Employee</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">					
-						<p>Are you sure you want to delete these Records?</p>
-						<p class="text-warning"><small>This action cannot be undone.</small></p>
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-danger" value="Delete">
-					</div>
-				</form>
+		  <div class="modal-content">
+	  
+			<div class="modal-header text-center">
+			  <h4 class="modal-title text-center w-100 font-weight-bold">Editar Usuario</h4>
+			  <button type="button" class="close" data-dismiss="modal" aria-lable="close">&times;</button>
 			</div>
+			<form [formGroup]="form1" (submit)="updateUser()">
+				<div class="modal-body mx-3"> 
+					<div class="md-form input-icons" >
+						<i class="bi bi-file-binary icon"></i>
+						<input type="text" formControlName="id" class="form-control validate input-field" placeholder="ID">
+						<div *ngIf="form1.get('id').errors && form1.get('id').touched">
+						  <p class="error" *ngIf="form1.get('id').hasError('required')">
+							<b>Es un campo requerido</b>
+						  </p>
+						</div>
+					</div>
+
+					<div class="md-form input-icons" >
+					  <i class="bi bi-person-circle icon" ></i>
+					  <input type="text" formControlName="nombre" class="form-control validate input-field" placeholder="Nombre">
+					  <div *ngIf="form1.get('nombre').errors && form1.get('nombre').touched">
+						<p class="error" *ngIf="form1.get('nombre').hasError('required')">
+						  <b>Es un campo requerido</b>
+						</p>
+					  </div>
+					</div>
+		
+					<div class="md-form input-icons">
+					  <i class="bi bi-people icon"></i>
+					  <input type="text" formControlName="apellidos" class="form-control validate input-field" placeholder="Apellidos">
+					</div>
+		
+					<div class="md-form input-icons">
+					  <i class="bi bi-envelope icon"></i>
+					  <input type="email" formControlName="email" class="form-control validate input-field" placeholder="Email">
+					  <div *ngIf="form1.get('email').errors && form1.get('email').touched">
+						<p class="error" *ngIf="form1.get('email').hasError('required')">
+						  <b>Es un campo requerido</b>
+						</p>
+						<p class="error" *ngIf="form1.get('email').hasError('email')">
+						  Debe introducir un email válido
+						</p>
+					  </div>
+					</div>
+					
+					<div class="md-form input-icons">
+					  <i class="bi bi-person-plus icon"></i>
+					  <input type="text" formControlName="admin" class="form-control validate input-field" placeholder="True | False">
+					  <div *ngIf="form1.get('admin').errors && form1.get('admin').touched">
+						  <p class="error">
+							  <b>Debe ser 'true' o 'false'</b>
+						  </p>
+					  </div>
+					</div>
+				</div>
+		
+				<div class="modal-footer d-flex justify-content-center">
+				  <button type="submit" class="btn btn-primary" >Editar</button>
+				</div>
+		  </form>
+	  
+		  </div>
 		</div>
-	</div>
+	  </div>
 </div>

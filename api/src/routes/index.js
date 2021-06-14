@@ -9,7 +9,7 @@ router.get('/users', getUsers);
 router.get('/user/:id', getUserById);
 router.post('/findUser', findUser);
 router.post('/user', setUser);
-router.put('/user/:id', updateUser);
+router.put('/user', updateUser);
 router.delete('/user/:id', deleteUser);
 router.post('/user/changeImage', changeImage);
 
