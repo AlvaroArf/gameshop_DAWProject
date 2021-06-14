@@ -67,10 +67,18 @@ const newRequest = async (req, res) => {
     res.send('NEW REQUEST CREATED');
 }
 
+const getHistory = async (req, res) => {
+    const id_usuario = req.params.id;
+    const response = await pool.query('select p.id_pedido, p.fecha,  dp.id_producto, dp.cantidad, dp.devuelto from pedido as p join detalle_pedido as dp on dp.id_pedido = p.id_pedido where id_usuario = $1 and p.comprando = false order by p.id_pedido', [id_usuario]);
+
+    res.json(response.rows);
+}
+
 module.exports = {
     getRequestDetails,
     setRequestGame,
     productExist,
     updateRequestGame,
-    newRequest
+    newRequest,
+    getHistory
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { APIDataService } from "../../services/apidata.service";
 
 @Component({
   selector: 'app-history',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoryComponent implements OnInit {
 
-  constructor() { }
+  public history: Array<any> = [];
+
+  constructor(private _apiDataService: APIDataService) { }
 
   ngOnInit(): void {
+    this._apiDataService.getHistory(localStorage.getItem('id')).subscribe(data => {
+      this.history = data;
+    })
   }
-
 }

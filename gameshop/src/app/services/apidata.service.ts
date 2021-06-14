@@ -67,6 +67,10 @@ export class APIDataService {
   }
 
   //USER
+  getUsers() {
+    return this.http.get('/api/users');
+  }
+
   findUser(email) {
     return this.http.post<any>('/api/findUser', {"email": email});
   }
@@ -77,6 +81,10 @@ export class APIDataService {
 
   changeImage(id_usuario, imagen):Observable<any> {
     return this.http.post('/api/user/changeImage', {"id_usuario": id_usuario, "imagen": imagen});
+  }
+
+  getHistory(id_usuario):Observable<any> {
+    return this.http.get('/api/history/' + id_usuario);
   }
 
   //WISHLIST
@@ -109,4 +117,5 @@ export class APIDataService {
     return this.http.post('/api/rating/check', {"id_usuario": id_usuario, "id_producto": id_producto});
   }
   
+
 }

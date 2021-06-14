@@ -18,13 +18,15 @@
         </ul>
     </div>
 </div>
-<div class="admin-tools" *ngIf="user_info[0]['admin']">
-    <app-admintools></app-admintools>
-</div>
+<!--
 <div class="request-history" *ngIf="!user_info[0]['admin']">
     <app-history></app-history>
 </div>
-
+-->
+<app-history></app-history>
+<div class="admin-tools" *ngIf="user_info[0]['admin']">
+    <app-admintools></app-admintools>
+</div>
 
 <!-- MODAL - CAMBIAR IMAGEN -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
