@@ -31,7 +31,7 @@ const { getCategories, getCategoryById, setCategory, updateCategory, deleteCateg
 router.get('/categories', getCategories);
 router.get('/category/:id', getCategoryById);
 router.post('/category', setCategory);
-router.put('/category/:id', updateCategory);
+router.put('/category', updateCategory);
 router.delete('/category/:id', deleteCategory);
 
 

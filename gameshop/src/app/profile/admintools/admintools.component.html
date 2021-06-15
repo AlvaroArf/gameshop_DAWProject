@@ -114,7 +114,8 @@
 							<h2>Administrar <b>Categorias</b></h2>
 						</div>
 						<div class="col-xs-6">
-							<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="bi bi-plus-circle"></i><span>Añadir Categoria</span></a>
+							<a href="#addCategoryModal" class="btn btn-success" data-toggle="modal"><i class="bi bi-plus-circle"></i><span>Añadir Categoria</span></a>
+							<a href="#editCategoryModal" class="btn btn-warning" data-toggle="modal"><i class="bi bi-pen-fill" data-toggle="tooltip" title="Edit"></i><span>Editar Categoria</span></a>
 						</div>
 					</div>
 				</div>
@@ -124,6 +125,7 @@
 							<th>ID</th>
 							<th>Nombre</th>
                             <th>Descripcion</th>
+							<th>Accion</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -132,8 +134,7 @@
 							<td>{{category.nombre_categoria}}</td>
                             <td>{{category.descripcion_categoria}}</td>
 							<td>
-								<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="bi bi-pen-fill" data-toggle="tooltip" title="Edit"></i></a>
-								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="bi bi-trash-fill" data-toggle="tooltip" title="Delete"></i></a>
+								<a class="delete" (click)='deleteCategory(category.id_categoria)'><i class="bi bi-trash-fill" title="Delete"></i></a>
 							</td>
 						</tr>
 					</tbody>
@@ -141,6 +142,7 @@
 			</div>
 		</div>        
     </div>
+	
 
 
 	<!--USER MODALS-->
@@ -412,6 +414,100 @@
 					  <input type="text" formControlName="stock" class="form-control validate input-field" placeholder="Stock">
 					  <div *ngIf="form2.get('stock').errors && form2.get('stock').touched">
 						<p class="error" *ngIf="form2.get('stock').hasError('required')">
+						  <b>Es un campo requerido</b>
+						</p>
+					  </div>
+					</div>
+				</div>
+		
+				<div class="modal-footer d-flex justify-content-center">
+				  <button type="submit" class="btn btn-primary" >Editar</button>
+				</div>
+		  </form>
+	  
+		  </div>
+		</div>
+	  </div>
+
+
+	<!--CATEGORY MODALS-->
+	<!--ADD-->
+	<div class="modal fade" id="addCategoryModal">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+	  
+			<div class="modal-header text-center">
+			  <h4 class="modal-title text-center w-100 font-weight-bold">Añadir Categoria</h4>
+			  <button type="button" class="close" data-dismiss="modal" aria-lable="close">&times;</button>
+			</div>
+			<form [formGroup]="form3" (submit)="setCategory()">
+			  <div class="modal-body mx-3"> 
+				  <div class="md-form input-icons" >
+					<i class="bi bi-person-circle icon" ></i>
+					<input type="text" formControlName="nombre" class="form-control validate input-field" placeholder="Nombre">
+					<div *ngIf="form3.get('nombre').errors && form3.get('nombre').touched">
+					  <p class="error" *ngIf="form3.get('nombre').hasError('required')">
+						<b>Es un campo requerido</b>
+					  </p>
+					</div>
+				  </div>
+	  
+				  <div class="md-form input-icons">
+					<i class="bi bi-chat-right-dots icon"></i>
+					<input type="text" formControlName="descripcion" class="form-control validate input-field" placeholder="Descripcion">
+					<div *ngIf="form3.get('descripcion').errors && form3.get('descripcion').touched">
+						<p class="error" *ngIf="form3.get('descripcion').hasError('required')">
+						  <b>Es un campo requerido</b>
+						</p>
+					</div>
+				  </div>
+			  </div>
+	  
+			  <div class="modal-footer d-flex justify-content-center">
+				<button type="submit" class="btn btn-primary" [disabled]="form3.invalid">Añadir</button>
+			  </div>
+		  </form>
+	  
+		  </div>
+		</div>
+	  </div>
+
+	<!--MODIFY-->
+	<div class="modal fade" id="editCategoryModal">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+	  
+			<div class="modal-header text-center">
+			  <h4 class="modal-title text-center w-100 font-weight-bold">Editar Categoria</h4>
+			  <button type="button" class="close" data-dismiss="modal" aria-lable="close">&times;</button>
+			</div>
+			<form [formGroup]="form3" (submit)="updateCategory()">
+				<div class="modal-body mx-3"> 
+					<div class="md-form input-icons" >
+						<i class="bi bi-file-binary icon"></i>
+						<input type="text" formControlName="id" class="form-control validate input-field" placeholder="ID">
+						<div *ngIf="form3.get('id').errors && form3.get('id').touched">
+						  <p class="error" *ngIf="form3.get('id').hasError('required')">
+							<b>Es un campo requerido</b>
+						  </p>
+						</div>
+					</div>
+
+					<div class="md-form input-icons" >
+						<i class="bi bi-person-circle icon" ></i>
+						<input type="text" formControlName="nombre" class="form-control validate input-field" placeholder="Nombre">
+					  <div *ngIf="form3.get('nombre').errors && form3.get('nombre').touched">
+						<p class="error" *ngIf="form3.get('nombre').hasError('required')">
+						  <b>Es un campo requerido</b>
+						</p>
+					  </div>
+					</div>
+
+					<div class="md-form input-icons">
+						<i class="bi bi-chat-right-dots icon"></i>
+						<input type="text" formControlName="descripcion" class="form-control validate input-field" placeholder="Descripcion">
+					  <div *ngIf="form3.get('descripcion').errors && form3.get('descripcion').touched">
+						<p class="error" *ngIf="form3.get('descripcion').hasError('required')">
 						  <b>Es un campo requerido</b>
 						</p>
 					  </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { APIDataService } from "../../services/apidata.service";
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AppComponent } from '../../app.component';
 
 
 @Component({
@@ -15,12 +16,14 @@ export class AdmintoolsComponent implements OnInit {
   public categories: any;
   info: any;
 
-  constructor(private _apiDataService: APIDataService) { 
+  constructor(private _apiDataService: APIDataService, private _appComponent: AppComponent) { 
     this.addUserForm();
     this.addProductForm();
+    this.addCategoryForm();
   }
   form1: FormGroup;
   form2: FormGroup;
+  form3: FormGroup;
 
   ngOnInit(): void {
   }
@@ -125,6 +128,40 @@ export class AdmintoolsComponent implements OnInit {
     })
   }
 
+  setCategory() {
+    this._apiDataService.setCategory(this.form3.value).subscribe(data => {
+      this.info = data;
+    })
+    this.form3.reset();
+    this.getCategories();
+    this._appComponent.ngOnInit();
+  }
+
+  updateCategory() {
+    console.log(this.form3.value);
+    this._apiDataService.updateCategory(this.form3.value).subscribe(data => {
+      this.info = data;
+    })
+    this.form3.reset();
+    this.getCategories();
+    this._appComponent.ngOnInit();
+  }
+
+  deleteCategory(id_producto) {
+    this._apiDataService.deleteCategory(id_producto).subscribe(data => {
+      this.info = data;
+    })
+    this.getCategories();
+    this._appComponent.ngOnInit();
+  }
+
+  addCategoryForm() {
+    this.form3 = new FormGroup({
+      id: new FormControl('', []),
+      nombre: new FormControl('', [Validators.required]),
+      descripcion: new FormControl('', [Validators.required])
+    });
+  }
  
 
 }

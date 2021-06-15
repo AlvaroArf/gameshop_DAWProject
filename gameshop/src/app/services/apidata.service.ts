@@ -48,6 +48,21 @@ export class APIDataService {
 
     return this.http.get(this.data);
   }
+
+  setCategory(category): Observable<any> {
+    return this.http.post('/api/category', {"nombre_categoria": category.nombre, 
+                                            "descripcion_categoria": category.descripcion});
+  }
+
+  updateCategory(category): Observable<any> {
+    return this.http.put('/api/category', {"id_categoria": category.id,
+                                          "nombre_categoria": category.nombre, 
+                                          "descripcion_categoria": category.descripcion})
+  }
+
+  deleteCategory(id_categoria): Observable<any> {
+    return this.http.delete('/api/category/' + id_categoria);
+  }
   
 
   //CART
