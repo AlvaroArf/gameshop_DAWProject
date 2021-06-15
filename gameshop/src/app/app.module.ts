@@ -22,6 +22,7 @@ import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from "./auth.guard";
 import { CategoryComponent } from './category/category.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AdmintoolsComponent,
     SigninComponent,
     SignupComponent,
-    CategoryComponent
+    CategoryComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

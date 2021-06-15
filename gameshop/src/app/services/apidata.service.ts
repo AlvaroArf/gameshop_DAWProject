@@ -42,6 +42,11 @@ export class APIDataService {
   deleteProduct(id_producto) {
     return this.http.delete('/api/product/' + id_producto);
   }
+
+  searchProduct(busqueda): Observable<any> {
+    return this.http.post('/api/product/search', {"busqueda": busqueda});
+  }
+
   //CATEGORIES
   getCategories(): Observable<any>{
     this.data = "/api/categories";
@@ -128,9 +133,6 @@ export class APIDataService {
     return this.http.post('/api/user/changeImage', {"id_usuario": id_usuario, "imagen": imagen});
   }
 
-  getHistory(id_usuario):Observable<any> {
-    return this.http.get('/api/history/' + id_usuario);
-  }
 
   //WISHLIST
   getWishlist(id_usuario): Observable<any> {
@@ -162,5 +164,13 @@ export class APIDataService {
     return this.http.post('/api/rating/check', {"id_usuario": id_usuario, "id_producto": id_producto});
   }
   
+  //HISTORY
+  getRequest(id_usuario): Observable<any> {
+    return this.http.get('/api/request/' + id_usuario);
+  }
+
+  getHistory(id_pedido):Observable<any> {
+    return this.http.get('/api/history/' + id_pedido);
+  }
 
 }

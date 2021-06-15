@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 
 import { APIDataService } from "./services/apidata.service";
 import { AuthService } from "./services/auth.service";
+//import { SearchComponent } from "./search/search.component";
 
 
 
@@ -23,11 +24,14 @@ export class AppComponent {
   categories: any;
   id_user: string;
   user_img: any;
+  search: string;
 
 
   constructor(private _authService: AuthService, 
               private _router: Router,
-              private _apiDataService: APIDataService) 
+              private _apiDataService: APIDataService,
+              //private _searchComponent: SearchComponent
+              ) 
               { 
                   this.signUpForm();
                   this.signInForm();
@@ -105,6 +109,17 @@ export class AppComponent {
         },
         err => console.log(err)
       )
+  }
 
+  searchProduct() {
+    console.log(this.search);
+    console.log(this._router.url);
+    
+    if(this._router.url == '/search'){
+      window.location.reload();
+     // this._searchComponent.ngOnInit();
+    }
+    
+    this._router.navigate(['/search']);
   }
 }

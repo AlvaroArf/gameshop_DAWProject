@@ -12,6 +12,16 @@ header {
     color: white;
 }
 
+.search {
+    position: absolute;
+    left: 42vw;
+}
+
+
+
+
+
+
 .user-image {
     width: 3vw;
     height: 6vh;

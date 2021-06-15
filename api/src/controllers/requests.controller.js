@@ -67,12 +67,21 @@ const newRequest = async (req, res) => {
     res.send('NEW REQUEST CREATED');
 }
 
-const getHistory = async (req, res) => {
+const getRequest = async (req, res) => {
     const id_usuario = req.params.id;
-    const response = await pool.query('select p.id_pedido, p.fecha,  dp.id_producto, dp.cantidad, dp.devuelto from pedido as p join detalle_pedido as dp on dp.id_pedido = p.id_pedido where id_usuario = $1 and p.comprando = false order by p.id_pedido', [id_usuario]);
+    const response = await pool.query('select distinct id_pedido from pedido where id_usuario = $1 and comprando = false', [id_usuario])
 
     res.json(response.rows);
 }
+
+const getHistory = async (req, res) => {
+    const id_pedido = req.params.id;
+    //const response = await pool.query('select p.id_pedido, p.fecha,  dp.id_producto, dp.cantidad, dp.devuelto from pedido as p join detalle_pedido as dp on dp.id_pedido = p.id_pedido where id_usuario = $1 and p.comprando = false order by p.id_pedido', [id_usuario]);
+    const response = await pool.query('select dp.id_producto, p.nombre_producto, p.imagen, dp.cantidad, dp.devuelto from detalle_pedido as dp join producto as p on p.id_producto = dp.id_producto where id_pedido = $1', [id_pedido]);
+    res.json(response.rows);
+}
+
+
 
 module.exports = {
     getRequestDetails,
@@ -80,5 +89,6 @@ module.exports = {
     productExist,
     updateRequestGame,
     newRequest,
+    getRequest,
     getHistory
 }

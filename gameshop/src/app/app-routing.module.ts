@@ -8,6 +8,7 @@ import { SigninComponent} from './signin/signin.component';
 import { CartComponent } from './cart/cart.component';
 import { CategoryComponent } from './category/category.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { SearchComponent } from './search/search.component'
 
 import { AuthGuard } from "./auth.guard";
 import { ProfileComponent } from './profile/profile.component';
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path: 'profile/:id_usuario',
     component: ProfileComponent
+  },
+  {
+    path: 'search',
+    component: SearchComponent
   }
 ];
 

@@ -7,14 +7,21 @@ import { APIDataService } from "../../services/apidata.service";
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent implements OnInit {
-
-  public history: Array<any> = [];
+  public id_user: string;
+  public products: Array<any> = [];
+  public pedidos:  Array<any> = [];
 
   constructor(private _apiDataService: APIDataService) { }
 
   ngOnInit(): void {
-    this._apiDataService.getHistory(localStorage.getItem('id')).subscribe(data => {
-      this.history = data;
+    this.id_user = localStorage.getItem('id');
+    this._apiDataService.getRequest(this.id_user).subscribe(data => {
+      this.pedidos = data;
+      for(let p = 0; p < this.pedidos.length; p++){
+        this._apiDataService.getHistory(this.pedidos[p]['id_pedido']).subscribe(data => {
+          this.products.push(data);
+        })
+      }
     })
   }
 }

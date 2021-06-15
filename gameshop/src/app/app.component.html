@@ -1,5 +1,17 @@
 <header>
   CABECERA
+  <div class="search">
+    <form (submit)=searchProduct()>
+      <div class="input-group">
+        <div class="form-outline">
+          <input type="search"[(ngModel)]="search" name="search" class="form-control" placeholder="Buscar" />
+        </div>
+        <button type="submit" class="btn btn-primary">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+    </form>
+  </div>
   <div class="login">
     <div class="d-flex justify-content-center">
       <!--Button for sign up-->

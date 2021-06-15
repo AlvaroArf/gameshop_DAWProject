@@ -1,1 +1,11 @@
 <p>history works!</p>
+{{pedidos | json}}
+<hr>
+{{products[0][0] | json}}
+
+<div class="pedido" *ngFor="let pedido of pedidos;let indice=index">
+    <p>ID PEDIDO: #{{pedido.id_pedido}}</p>
+    <div class="producto" *ngFor="let product of products[indice]">
+        <p>{{product.nombre_producto}}</p>
+    </div>
+</div>

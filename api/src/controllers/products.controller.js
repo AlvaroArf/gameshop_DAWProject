@@ -52,11 +52,20 @@ const deleteProduct = async (req, res) => {
     res.send('PRODUCT ' + id + ' DELETED');
 };
 
+const searchProduct = async (req, res)=> {
+
+    const busqueda = req.body;
+    const response = await pool.query("select * from producto where nombre_producto ilike concat('%', $1::varchar(255), '%')", [busqueda['busqueda']]);
+
+    res.json(response.rows);
+}
+
 module.exports = {
     getProducts,
     getProductsByCategory,
     getProductById,
     setProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    searchProduct
 }

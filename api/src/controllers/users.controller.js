@@ -31,11 +31,9 @@ const findUser = async (req, res) => {
 };
 
 const setUser = async (req, res) => {
-    const { email, password, nombre, apellidos, direccion, imagen, admin } = req.body;
-    if(imagen == ''){
-        imagen = 'https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png';
-    }
-    const response = await pool.query('INSERT INTO usuario (email, password, nombre, apellidos, direccion, admin) VALUES ($1, $2, $3, $4, $5, $6) returning *', [email, password, nombre, apellidos, direccion, admin]);
+    const { email, password, nombre, apellidos, direccion, admin } = req.body;
+    const imagen = 'https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png';
+    const response = await pool.query('INSERT INTO usuario (email, password, nombre, apellidos, direccion, imagen, admin) VALUES ($1, $2, $3, $4, $5, $6, $7) returning *', [email, password, nombre, apellidos, direccion, imagen, admin]);
 
     console.log(response.rows);
     res.send('USER CREATED');
