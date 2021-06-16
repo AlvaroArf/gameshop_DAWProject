@@ -1,11 +1,51 @@
 <p>history works!</p>
+
 {{pedidos | json}}
 <hr>
-{{products[0][0] | json}}
-
-<div class="pedido" *ngFor="let pedido of pedidos;let indice=index">
-    <p>ID PEDIDO: #{{pedido.id_pedido}}</p>
-    <div class="producto" *ngFor="let product of products[indice]">
-        <p>{{product.nombre_producto}}</p>
+{{products | json}}
+<div class="container">
+    <h2>Historial de pedidos</h2>
+    <div class="empty-cart" *ngIf="pedidos[0] == null">
+        <p class="vaya">¡VAYA!</p>
+        <p>Parece que no tiene ningún producto en el carrito...</p>
+        <img src="../../assets/images/carrito.png">
+    </div>
+    <div class="pedido" *ngFor="let pedido of pedidos;let indice=index">
+        <div class="id_pedido">
+            <p>ID PEDIDO: <b>#{{pedido.id_pedido}}</b>
+                <span class="fecha_pedido">{{pedido.fecha}}</span>
+            </p>
+        </div>
+        <div class="producto">
+            <table>
+                <tr  *ngFor="let product of products[indice]">
+                    <td>
+                        <img src="{{product.imagen}}">
+                    </td>
+                    <td>
+                        {{product.nombre_producto}}
+                    </td>
+                    <td>
+                        Cantidad: {{product.cantidad}}
+                    </td>
+                    <td>
+                        {{product.precio * product.cantidad}}€
+                    </td>
+                    <td>
+                        Estado:
+                        <span class="envio" *ngIf="product.devuelto == false">
+                            En curso
+                        </span>
+                        <span class="devuelto" *ngIf="product.devuelto == true">
+                            Devuelto
+                        </span>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" type="button" *ngIf="product.devuelto == false" (click)="changeStatus(pedido.fecha, pedido.id_pedido, product.id_producto)">Devolver</button>
+                        <button class="btn btn-primary" type="button" *ngIf="product.devuelto == true" disabled>Devolver</button>
+                    </td>
+                </tr> 
+            </table>            
+        </div>
     </div>
 </div>

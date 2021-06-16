@@ -69,16 +69,30 @@ const newRequest = async (req, res) => {
 
 const getRequest = async (req, res) => {
     const id_usuario = req.params.id;
-    const response = await pool.query('select distinct id_pedido from pedido where id_usuario = $1 and comprando = false', [id_usuario])
+    const response = await pool.query('select * from pedido where id_usuario = $1 and comprando = false order by id_pedido', [id_usuario])
+/*
+    for(let i = 0; i < response.rows.length; i++){
+        response.rows[i]['fecha'] = response.rows[i]['fecha'].split("T")[0];
+    }
+*/
 
+    const fecha = response.rows[0]['fecha'];
+    console.log("LA FECHA" + fecha)
     res.json(response.rows);
 }
 
 const getHistory = async (req, res) => {
     const id_pedido = req.params.id;
     //const response = await pool.query('select p.id_pedido, p.fecha,  dp.id_producto, dp.cantidad, dp.devuelto from pedido as p join detalle_pedido as dp on dp.id_pedido = p.id_pedido where id_usuario = $1 and p.comprando = false order by p.id_pedido', [id_usuario]);
-    const response = await pool.query('select dp.id_producto, p.nombre_producto, p.imagen, dp.cantidad, dp.devuelto from detalle_pedido as dp join producto as p on p.id_producto = dp.id_producto where id_pedido = $1', [id_pedido]);
+    const response = await pool.query('select dp.id_producto, p.nombre_producto, p.imagen, p.precio, dp.cantidad, dp.devuelto from detalle_pedido as dp join producto as p on p.id_producto = dp.id_producto where id_pedido = $1', [id_pedido]);
     res.json(response.rows);
+}
+
+const changeStatus = async (req, res) => {
+    const { id_pedido, id_producto, status } = req.body;
+    const response = await pool.query('update detalle_pedido set devuelto = $1 where id_pedido = $2 and id_producto = $3', [status, id_pedido, id_producto]);
+
+    res.send("STATUS CHANGED");
 }
 
 
@@ -90,5 +104,6 @@ module.exports = {
     updateRequestGame,
     newRequest,
     getRequest,
-    getHistory
+    getHistory,
+    changeStatus
 }

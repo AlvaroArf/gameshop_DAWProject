@@ -1,0 +1,72 @@
+.container {
+    background-color: white;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    padding-bottom:2vh;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+
+}
+
+.pedido {
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    margin-left:2vw;
+    margin-right: 2vw;
+    margin-bottom:3vh;
+}
+
+.id_pedido {
+    display: inline-block;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+}
+
+.fecha_pedido {
+    margin-left:1vw;
+    font-size: 14px;
+    position: relative;
+    bottom:0vh;
+}
+
+.producto {
+    margin-top: 3vh;
+    margin-left: 2vw;
+    padding-bottom: 3vh;
+}
+
+img {
+    width: 8vw;
+    height: 18vh;
+    border-radius: 8px;
+}
+
+table {
+    width:55vw;
+}
+
+.envio {
+    color: green;
+}
+
+.devuelto {
+    color: red;
+}
+
+.empty-cart {
+    text-align: center;
+    font-size: 2vh;
+}
+
+.vaya {
+    margin-top: 6vh;
+    text-align: center;
+    font-size: 5vh;
+}

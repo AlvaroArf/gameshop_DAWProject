@@ -173,4 +173,9 @@ export class APIDataService {
     return this.http.get('/api/history/' + id_pedido);
   }
 
+  changeStatus(status, id_pedido, id_producto):Observable<any> {
+    return this.http.post('/api/request/change', {"status": status, 
+                                                  "id_pedido": id_pedido, 
+                                                  "id_producto": id_producto})
+  }
 }

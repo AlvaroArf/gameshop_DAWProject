@@ -12,6 +12,7 @@ export class CartComponent implements OnInit {
   public cartlist: Array<any> = [];
   //public datos: Array<any> = [];
   public all_total: number;
+  private info : any;
 
 
 
@@ -72,7 +73,8 @@ export class CartComponent implements OnInit {
     console.log("ID PEDIDO:" + id_pedido + ", ID USUARIO: " + id_usuario);
 
     this._apiDataService.newRequest(id_pedido, id_usuario).subscribe(data=>{
-      this.ngOnInit();
+      this.info = data;
     });
+    this.ngOnInit();
   }
 }
