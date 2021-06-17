@@ -61,7 +61,7 @@ const updateRequestGame = async (req, res) => {
 const newRequest = async (req, res) => {
     const { id_pedido, id_usuario } = req.body;
 
-    const resupdate = await pool.query('update pedido set comprando = false where id_pedido = $1', [id_pedido]);
+    const resupdate = await pool.query('update pedido set comprando = false and fecha = current_date where id_pedido = $1', [id_pedido]);
     const resinsert = await pool.query('insert into pedido (comprando, fecha, id_usuario) values (true, current_date, $1)', [id_usuario]);
 
     res.send('NEW REQUEST CREATED');
