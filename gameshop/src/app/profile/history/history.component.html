@@ -33,15 +33,21 @@
                     </td>
                     <td>
                         Estado:
-                        <span class="envio" *ngIf="product.devuelto == false">
-                            En curso
-                        </span>
+                        <div *ngIf="product.devuelto == false" style="display: inline-block">
+                            <span class="envio" *ngIf="isSended(pedido.fecha)">
+                                Entregado
+                            </span>
+                            <span class="envio" *ngIf="!isSended(pedido.fecha)">
+                                En curso
+                            </span>
+                        </div>
                         <span class="devuelto" *ngIf="product.devuelto == true">
                             Devuelto
                         </span>
                     </td>
                     <td>
-                        <button class="btn btn-primary" type="button" *ngIf="product.devuelto == false" (click)="changeStatus(pedido.fecha, pedido.id_pedido, product.id_producto)">Devolver</button>
+                        <button class="btn btn-primary" type="button" *ngIf="product.devuelto == false && canReturnOrder(pedido.fecha)" (click)="changeStatus(pedido.fecha, pedido.id_pedido, product.id_producto)">Devolver</button>
+                        <button class="btn btn-primary" type="button" *ngIf="product.devuelto == false && !canReturnOrder(pedido.fecha)" disabled>Devolver</button>
                         <button class="btn btn-primary" type="button" *ngIf="product.devuelto == true" disabled>Devolver</button>
                     </td>
                 </tr> 

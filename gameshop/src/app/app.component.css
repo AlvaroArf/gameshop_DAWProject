@@ -17,11 +17,6 @@ header {
     left: 42vw;
 }
 
-
-
-
-
-
 .user-image {
     width: 3vw;
     height: 6vh;
@@ -76,7 +71,7 @@ section {
 
 footer {
     width: 100vw;
-    height: 12vh;
+    height: 12.5vh;
     background-color: black;
     box-sizing: border-box;
     color: white;

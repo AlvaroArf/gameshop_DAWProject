@@ -1,10 +1,12 @@
+/*
 * {
     margin-left: 1vw;
-}
+}*/
 
 .container {
-    margin-left: 4vw;
+    padding-left: 0.5vw
 }
+
 
 .game {
     margin-left:1vw;

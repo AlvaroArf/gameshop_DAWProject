@@ -5,15 +5,17 @@ import { HttpClient } from "@angular/common/http";
   providedIn: 'root'
 })
 export class AuthService {
+
+  url:string = "http://localhost:3000";
   
   constructor(private http: HttpClient) {}
 
   signUp(user) {
-    return this.http.post<any>('/api/signup', {"name": user.nombre, "surname": user.apellidos, "email": user.email, "address": user.direccion, "password": user.password});
+    return this.http.post<any>(this.url + '/api/signup', {"name": user.nombre, "surname": user.apellidos, "email": user.email, "address": user.direccion, "password": user.password});
   }
 
   signIn(user) {
-    return this.http.post<any>('/api/signin', user);
+    return this.http.post<any>(this.url + '/api/signin', user);
   }
 
   loggedIn(): boolean{
@@ -22,5 +24,4 @@ export class AuthService {
     }
     return false;
   }
-
 }
