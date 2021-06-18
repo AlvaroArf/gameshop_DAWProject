@@ -1,6 +1,6 @@
 <p>category works!</p>
 <div class="container">
-    <div class="game" *ngFor="let game of gamelist;let indice=index;let impar = even">
+    <div class="game" *ngFor="let game of gamelist;let indice=index;let impar = even" [ngClass]="{game2:gamelist.length<=5}">
         <div class="col-12" 
         [routerLink]="['/game', game['id_producto']]" 
         [routerLinkActivate]="['activado']"

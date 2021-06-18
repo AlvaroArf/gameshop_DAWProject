@@ -7,7 +7,7 @@
     <h2>Historial de pedidos</h2>
     <div class="empty-cart" *ngIf="pedidos[0] == null">
         <p class="vaya">¡VAYA!</p>
-        <p>Parece que no tiene ningún producto en el carrito...</p>
+        <p>Parece que no tiene ningún pedido realizado...</p>
         <img src="../../assets/images/carrito.png">
     </div>
     <div class="pedido" *ngFor="let pedido of pedidos;let indice=index">

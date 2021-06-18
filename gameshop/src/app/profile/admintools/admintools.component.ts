@@ -111,7 +111,7 @@ export class AdmintoolsComponent implements OnInit {
     this.form2 = new FormGroup({
       id: new FormControl('', []),
       nombre: new FormControl('', [Validators.required]),
-      descripcion: new FormControl('', [Validators.required]),
+      descripcion: new FormControl('', [Validators.required, Validators.maxLength(250)]),
       precio: new FormControl('', [Validators.required]),
       stock: new FormControl('', [Validators.required]),
       imagen: new FormControl('', [Validators.required]),
@@ -159,7 +159,7 @@ export class AdmintoolsComponent implements OnInit {
     this.form3 = new FormGroup({
       id: new FormControl('', []),
       nombre: new FormControl('', [Validators.required]),
-      descripcion: new FormControl('', [Validators.required])
+      descripcion: new FormControl('', [Validators.required, Validators.maxLength(250)])
     });
   }
  

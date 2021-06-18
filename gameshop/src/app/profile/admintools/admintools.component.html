@@ -321,10 +321,14 @@
 	  
 				  <div class="md-form input-icons">
 					<i class="bi bi-chat-right-dots icon"></i>
-					<input type="text" formControlName="descripcion" class="form-control validate input-field" placeholder="Descripcion">
+					<!--<input type="text" formControlName="descripcion" class="form-control validate input-field" placeholder="Descripcion">-->
+					<textarea formControlName="descripcion" class="form-control validate input-field" placeholder="Descripcion"></textarea>
 					<div *ngIf="form2.get('descripcion').errors && form2.get('descripcion').touched">
 						<p class="error" *ngIf="form2.get('descripcion').hasError('required')">
 						  <b>Es un campo requerido</b>
+						</p>
+						<p class="error" *ngIf="form2.get('descripcion').hasError('maxlength')">
+							<b>No puedes superar los 250 carácteres</b>
 						</p>
 					</div>
 				  </div>
@@ -454,10 +458,13 @@
 	  
 				  <div class="md-form input-icons">
 					<i class="bi bi-chat-right-dots icon"></i>
-					<input type="text" formControlName="descripcion" class="form-control validate input-field" placeholder="Descripcion">
+					<textarea formControlName="descripcion" class="form-control validate input-field" placeholder="Descripcion"></textarea>
 					<div *ngIf="form3.get('descripcion').errors && form3.get('descripcion').touched">
 						<p class="error" *ngIf="form3.get('descripcion').hasError('required')">
 						  <b>Es un campo requerido</b>
+						</p>
+						<p class="error" *ngIf="form3.get('descripcion').hasError('maxlength')">
+							<b>No puedes superar los 250 carácteres</b>
 						</p>
 					</div>
 				  </div>
@@ -505,12 +512,15 @@
 
 					<div class="md-form input-icons">
 						<i class="bi bi-chat-right-dots icon"></i>
-						<input type="text" formControlName="descripcion" class="form-control validate input-field" placeholder="Descripcion">
-					  <div *ngIf="form3.get('descripcion').errors && form3.get('descripcion').touched">
-						<p class="error" *ngIf="form3.get('descripcion').hasError('required')">
-						  <b>Es un campo requerido</b>
-						</p>
-					  </div>
+						<textarea formControlName="descripcion" class="form-control validate input-field" placeholder="Descripcion"></textarea>
+						<div *ngIf="form3.get('descripcion').errors && form3.get('descripcion').touched">
+							<p class="error" *ngIf="form3.get('descripcion').hasError('required')">
+							<b>Es un campo requerido</b>
+							</p>
+							<p class="error" *ngIf="form3.get('descripcion').hasError('maxlength')">
+								<b>No puedes superar los 250 carácteres</b>
+							</p>
+						</div>
 					</div>
 				</div>
 		

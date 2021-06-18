@@ -12,9 +12,21 @@ header {
     color: white;
 }
 
+.logo {
+    display: inline-block;
+    position: absolute;
+    left: 14vw;
+    top: 1vh;
+}
+
+.logo img {
+    width: 10vh;
+}
+
 .search {
     position: absolute;
     left: 42vw;
+    margin-top: 3.5vh;
 }
 
 .user-image {
@@ -24,9 +36,24 @@ header {
     border-image: 1px black;
 } 
 
+.signup, .signin {
+    padding-top: 3.5vh;
+}
+
 .login button {
     position:absolute;
     right: 15vw;
+}
+
+.user {
+    margin-top: 2vh;
+}
+
+body {
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    background-image: url('../assets/images/background.jpg');
+    background-size: 100vw 100vh;
 }
 
 nav, section {
@@ -35,9 +62,18 @@ nav, section {
 }
 
 nav {
-    margin-top: 2vh;
-    margin-bottom: 2vh;
+    margin-bottom: 1vh;
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
     width: 73vw;
+    background-color: rgba(255, 255, 255, 0.521);
+    border-radius: 20px;
+}
+
+.categ {
+    margin-left: 1vw;
+    position: relative;
+    opacity:1;
 }
 
 .dropdown {
@@ -59,14 +95,13 @@ nav {
 }
 
 section {
-	background-color: #7FFFD4;
+	background-color: rgb(29, 29, 29);
 	font-size: 20px;
     width: 73vw;
     min-height: 64.5vh;
-    margin-top: 1vh;
-    margin-bottom: 3vh;
     padding-bottom: 3vh;
     border-radius: 10px;
+    color:white;
 }
 
 footer {

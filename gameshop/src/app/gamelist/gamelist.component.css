@@ -4,12 +4,19 @@
 }*/
 
 .container {
-    padding-left: 0.5vw
+    padding-left: 0.5vw;
+    text-align: center;
+    padding-top: 6vh;
 }
 
-
 .game {
-    margin-left:1vw;
+    position: relative;
+    display:inline-block;
+    text-align:center;
+}
+
+.game2 {
+    margin-top: 7vh;
     position: relative;
     display:inline-block;
     text-align:center;
@@ -34,3 +41,4 @@ div p {
     font-size: 12px;
     text-align: center;
 }
+
