@@ -20,15 +20,19 @@
 
 .container {
     margin-top: 8vh;
+    color: black;
+}
+
+.valorar {
     border-style: solid;
     border-color: black;
     border-width: 2px;
-    padding-bottom: 2vh;
 }
 
 h2 {
     margin-top: 2vh;
     text-align: center;
+    color:white;
 }
 
 .div-rating {
@@ -52,7 +56,7 @@ h2 {
 
 .other-comments {
     padding: 1.5vh;
-    margin-top: 8vh;
+    margin-top: 2vh;
     border-style: solid;
     border-color: black;
     border-width: 2px;

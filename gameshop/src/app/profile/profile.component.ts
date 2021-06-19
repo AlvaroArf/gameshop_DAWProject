@@ -26,8 +26,6 @@ export class ProfileComponent implements OnInit {
     this._apiDataService.changeImage(this.user_id, this.image).subscribe(data => {
       this.info = data;
     })
-
-    window.location.reload();
-
+    this.ngOnInit;
   }
 }

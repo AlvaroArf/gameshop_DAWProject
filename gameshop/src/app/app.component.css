@@ -1,7 +1,12 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+@font-face {
+    font-family: "Milliard ";
+    src: url("../assets/fonts/Milliard_light.woff");
+}
 
 * {
     margin: 0;
+    font-family: "Open sans";
 }
 
 header {
@@ -108,22 +113,29 @@ footer {
     width: 100vw;
     height: 12.5vh;
     background-color: black;
-    box-sizing: border-box;
     color: white;
     bottom: 0px;
+    text-align: center;
+}
+
+footer img {
+    display: inline-block;
+    position:relative;
+    width: 6vw;
+    margin-left: 1vh;
 }
 
 /**** MODAL CSS ****/
 
 .signin {
     position:absolute;
-    right: 21vw;
+    right: 24vw;
 
 }
 
 .signup {
     position:absolute;
-    right: 15vw;
+    right: 16vw;
 }
 
 .input-icons i {

@@ -3,6 +3,12 @@
     margin-top:3vh;
 }
 
+.container {
+    margin-top:0vh;
+    margin-left: 0;
+    padding-top:5.5vh;
+}
+
 #portada {
     position: relative;
     display: inline-block;

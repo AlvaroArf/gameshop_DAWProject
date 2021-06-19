@@ -20,8 +20,10 @@ img {
     display:inline-block;
     background-color: rgb(185, 183, 183);
     font-size: 1vw;
-    width: 16px;
+    width: 24px;
     margin-left: 0px;
+    color:black;
+    text-align: center;
 }
 
 .cantidad svg {
