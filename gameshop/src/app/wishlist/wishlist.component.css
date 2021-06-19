@@ -1,3 +1,7 @@
+.container {
+    padding-top:4vh;
+}
+
 ul {
     margin-left: 2vw;
 }
@@ -30,6 +34,7 @@ img {
 }
 
 .empty-cart {
+    padding-top: 4vh;
     text-align: center;
     font-size: 2vh;
 }

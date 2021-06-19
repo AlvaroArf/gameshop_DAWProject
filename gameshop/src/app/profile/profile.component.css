@@ -1,7 +1,12 @@
+.user-info {
+    margin-bottom: 6vh;
+}
+
 .container-img{
     position: relative;
     display: inline-block;
     margin-left: 2vw;
+    margin-top: 4vh;
 }
 
 .container-img img {
@@ -30,3 +35,8 @@
 .info ul li {
     margin-bottom: 2vh;
 }
+
+.modal-title, .control-label {
+    color:black;
+}
+

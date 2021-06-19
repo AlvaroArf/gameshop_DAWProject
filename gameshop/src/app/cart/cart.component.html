@@ -20,11 +20,33 @@
         </tr>
     </table>
     <hr>
-    <button class="btn btn-success" (click)="buyRequest(cartlist[0]['id_pedido'])">Comprar</button>
+    <button class="btn btn-success" (click)="buyRequest(cartlist[0]['id_pedido'])" data-toggle="modal" data-target="#cart-info">Comprar</button>
     <p class="price total"><b>{{all_total}}€</b></p>
+    
 </div>
 <div class="empty-cart" *ngIf="cartlist[0] == null">
     <p class="vaya">¡VAYA!</p>
     <p>Parece que no tiene ningún producto en el carrito...</p>
     <img src="../../assets/images/carrito.png">
 </div>
+
+
+
+  <!-- Modal -->
+  <button type="button" id="abrirModal" [hidden]="true" class="btn btn-primary" data-toggle="modal" data-target="#cart-info">
+    Launch demo modal
+    </button>
+  <div class="modal fade" id="cart-info">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h3 class="modal-title w100 dark-grey-text font-weight-bold">Iniciar Sesión</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-lable="close">&times;</button>
+        </div>
+        <div class="modal-body mx-4">
+            <p class="title">¡Gracias por su compra!<i class="bi bi-emoji-smile"></i></p>
+            <p>Puede ver el estado del pedido desde su perfil de usuario</p>
+        </div>
+      </div>
+    </div>
+  </div>

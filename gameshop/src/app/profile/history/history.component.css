@@ -1,8 +1,4 @@
 .container {
-    background-color: white;
-    border-style: solid;
-    border-color: black;
-    border-width: 2px;
     padding-bottom:2vh;
 }
 
@@ -20,6 +16,8 @@ h2 {
     margin-left:2vw;
     margin-right: 2vw;
     margin-bottom:3vh;
+    background-color: rgb(224, 224, 224);
+    color:black;
 }
 
 .id_pedido {
@@ -27,6 +25,10 @@ h2 {
     border-style: solid;
     border-color: black;
     border-width: 1px;
+    border-bottom-width: 3px;
+    border-right-width: 3px;
+    background-color: rgb(29, 29, 29);
+    color:white;
 }
 
 .fecha_pedido {
@@ -68,5 +70,5 @@ table {
 .vaya {
     margin-top: 6vh;
     text-align: center;
-    font-size: 5vh;
+    font-size: 4vh;
 }

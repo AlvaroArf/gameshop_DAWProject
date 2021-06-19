@@ -20,26 +20,18 @@
 
 .container {
     margin-top: 8vh;
-    color: black;
-}
-
-.valorar {
-    border-style: solid;
-    border-color: black;
-    border-width: 2px;
 }
 
 h2 {
     margin-top: 2vh;
     text-align: center;
-    color:white;
 }
 
 .div-rating {
     border-style: solid;
     border-color: black;
     border-width: 1px;
-    margin: 2vw;
+    margin-bottom: 4vh;
 }
 
 .comment-rating {
@@ -59,7 +51,7 @@ h2 {
     margin-top: 2vh;
     border-style: solid;
     border-color: black;
-    border-width: 2px;
+    border-width: 1px;
 }
 
 .user-comment {
@@ -68,6 +60,7 @@ h2 {
 
 .username {
     margin: 0px;
+    color:orangered;
 }
 
 .comentary, .rating {
@@ -80,6 +73,10 @@ h2 {
 
 .star {
     width: 3vw;
+}
+
+.comentary, .puntuacion {
+    color: black;
 }
 
 .puntuacion {

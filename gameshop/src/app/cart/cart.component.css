@@ -51,6 +51,7 @@ button {
 }
 
 .empty-cart {
+    padding-top: 4vh;
     text-align: center;
     font-size: 2vh;
 }
@@ -59,4 +60,13 @@ button {
     margin-top: 6vh;
     text-align: center;
     font-size: 5vh;
+}
+
+.modal-body {
+    color:black;
+    text-align: center;
+}
+
+.title {
+    font-size: 20px;
 }

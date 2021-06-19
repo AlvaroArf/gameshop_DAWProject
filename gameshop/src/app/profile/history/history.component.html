@@ -1,14 +1,9 @@
-<p>history works!</p>
 
-{{pedidos | json}}
-<hr>
-{{products | json}}
 <div class="container">
     <h2>Historial de pedidos</h2>
     <div class="empty-cart" *ngIf="pedidos[0] == null">
         <p class="vaya">¡VAYA!</p>
-        <p>Parece que no tiene ningún pedido realizado...</p>
-        <img src="../../assets/images/carrito.png">
+        <p>Parece que aún no realizó ningún pedido...</p>
     </div>
     <div class="pedido" *ngFor="let pedido of pedidos;let indice=index">
         <div class="id_pedido">

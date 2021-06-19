@@ -71,10 +71,10 @@ export class CartComponent implements OnInit {
   buyRequest(id_pedido){
     let id_usuario = localStorage.getItem('id');
     console.log("ID PEDIDO:" + id_pedido + ", ID USUARIO: " + id_usuario);
-
     this._apiDataService.newRequest(id_pedido, id_usuario).subscribe(data=>{
       this.info = data;
     });
+    document.getElementById("abrirModal").click();
     this.ngOnInit();
   }
 }
