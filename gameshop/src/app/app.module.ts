@@ -17,12 +17,12 @@ import { RatingComponent } from './game/rating/rating.component';
 import { HistoryComponent } from './profile/history/history.component';
 import { AdmintoolsComponent } from './profile/admintools/admintools.component';
 
-import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from "./auth.guard";
 import { CategoryComponent } from './category/category.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SearchComponent } from './search/search.component';
+import { VerifyComponent } from './verify/verify.component';
+import { ConfirmComponent } from './verify/confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -35,10 +35,10 @@ import { SearchComponent } from './search/search.component';
     RatingComponent,
     HistoryComponent,
     AdmintoolsComponent,
-    SigninComponent,
-    SignupComponent,
     CategoryComponent,
-    SearchComponent
+    SearchComponent,
+    VerifyComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,

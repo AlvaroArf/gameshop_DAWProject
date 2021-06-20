@@ -65,6 +65,20 @@ const changeImage = async (req, res) => {
     res.send('IMAGE CHANGED');
 }
 
+const updateConfirm = async (req, res) => {
+    const id_usuario = req.params.id;
+    const response = await pool.query('update usuario set confirmed = true where id_usuario = $1', [id_usuario])
+
+    res.send('USER VERIFICATION UPDATED');
+}
+
+const checkConfirm = async (req, res) => {
+    const id_usuario = req.params.id;
+    const response = await pool.query('select confirmed from usuario where id_usuario = $1', [id_usuario]);
+
+    res.json(response.rows[0]['confirmed']);
+}
+
 module.exports = {
     getUsers,
     getUserById,
@@ -72,5 +86,7 @@ module.exports = {
     setUser,
     updateUser,
     deleteUser,
-    changeImage
+    changeImage,
+    updateConfirm,
+    checkConfirm
 }

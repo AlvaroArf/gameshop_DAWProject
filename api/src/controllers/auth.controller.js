@@ -1,5 +1,7 @@
 const { Pool } = require('pg');
 const jwt = require('jsonwebtoken');
+const emailer = require('../config/emailer');
+
 
 const pool = new Pool({
     host: 'localhost',
@@ -29,17 +31,28 @@ const signUp = async (req, res) => {
 
     const response = await pool.query('INSERT INTO usuario (email, password, nombre, apellidos, direccion, admin, imagen) VALUES ($1, $2, $3, $4, $5, false, $6) returning *', [email, password, name, surname, address, imagen]);
     await pool.query('insert into pedido (comprando, fecha, id_usuario) values (true, current_date, $1) returning *', [response.rows[0].id_usuario]);
-    //insertRequest(response.rows[0].id_usuario);
+
+    res.json(response.rows[0].id_usuario);
+    /*
     if(response != undefined){
         const token = jwt.sign({id: response.rows[0].id_usuario}, 'secretKey');
         return res.status(200).json({token});
     }
+    */
 };
-/*
-const insertRequest = (id_usuario) => {
-    const response = pool.query('insert into pedido (comprando, fecha, id_usuario) values (true, current_date, $1)', [id_usuario]);
+
+const sendEmail = async (req, res) => {
+    try {
+        const body = req.body;
+        console.log("sendEmail: " + body['email'])
+        emailer.sendMail(body['email'], body['id_usuario']);
+        res.send("Correo de verificacion enviado: " + body['email']);
+    } catch (e) {
+        console.log(e);
+        res.send("Error en el envio del correo de verificación");
+    }
 }
-*/
+
 function verifyToken(req, res, next) {
     if (!req.headers.authorization) {
         return res.status(401).send('Autorización fallida');
@@ -62,5 +75,6 @@ function verifyToken(req, res, next) {
 module.exports = {
     signIn,
     signUp,
+    sendEmail,
     verifyToken
 }

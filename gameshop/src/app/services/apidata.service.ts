@@ -81,8 +81,6 @@ export class APIDataService {
 
   setRequestGame(id_usuario, id_producto): Observable<any>
   {
-    //this.data = this.url + "/api/cart/" + id_usuario  + "/" + id_producto;
-
     return this.http.post(this.url + "/api/cart", {"id_usuario": id_usuario, "id_producto": id_producto});
   };
   
@@ -139,6 +137,14 @@ export class APIDataService {
 
   changeImage(id_usuario, imagen):Observable<any> {
     return this.http.post(this.url + '/api/user/changeImage', {"id_usuario": id_usuario, "imagen": imagen});
+  }
+
+  updateVerification(id_usuario): Observable<any> {
+    return this.http.get(this.url + '/api/user/verify/' + id_usuario);
+  }
+
+  checkConfirm(id_usuario): Observable<any> {
+    return this.http.get(this.url + '/api/userCheck/' + id_usuario);
   }
 
 

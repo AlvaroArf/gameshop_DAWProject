@@ -24,4 +24,9 @@ export class AuthService {
     }
     return false;
   }
+
+  sendEmail(email, id_usuario) {
+    console.log("NTRA EN EL SERVICIO: " + email + "- id_user: " +  id_usuario);
+    return this.http.post<any>(this.url + '/api/auth/email', {"email": email, "id_usuario": id_usuario});
+  }
 }

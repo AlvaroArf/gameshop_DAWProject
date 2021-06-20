@@ -194,7 +194,12 @@
               </p>
             </div>
           </div>
-
+          <div *ngIf="!check">
+            <p class="error">
+              Debes de verificar el correo primero
+            </p>
+          </div>
+          
           <div class="md-form input-icons">
             <i class="bi bi-lock icon"></i>
             <input type="password" formControlName="password" class="form-control validate input-field" placeholder="Tu Contraseña" required>

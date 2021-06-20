@@ -3,12 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { GamelistComponent} from './gamelist/gamelist.component';
 import { GameComponent } from './game/game.component';
-import { SignupComponent} from './signup/signup.component';
-import { SigninComponent} from './signin/signin.component';
 import { CartComponent } from './cart/cart.component';
 import { CategoryComponent } from './category/category.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { SearchComponent } from './search/search.component'
+import { VerifyComponent } from './verify/verify.component';
+import { ConfirmComponent } from './verify/confirm/confirm.component';
 
 import { AuthGuard } from "./auth.guard";
 import { ProfileComponent } from './profile/profile.component';
@@ -27,14 +27,6 @@ const routes: Routes = [
     path: 'game/:id_producto', 
     component: GameComponent
   },
-  { 
-    path: 'signup', 
-    component: SignupComponent
-  },
-  { 
-    path: 'signin', 
-    component: SigninComponent 
-  },
   {
     path: 'cart',
     component: CartComponent,
@@ -52,6 +44,14 @@ const routes: Routes = [
   {
     path: 'search',
     component: SearchComponent
+  },
+  {
+    path: 'verify',
+    component: VerifyComponent
+  },
+  {
+    path: 'verify/:id',
+    component: ConfirmComponent
   }
 ];
 

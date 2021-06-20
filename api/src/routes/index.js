@@ -3,15 +3,17 @@ const router = Router();
 
 
 //USERS ROUTES
-const { getUsers, getUserById, findUser, setUser, updateUser, deleteUser, changeImage } = require('../controllers/users.controller');
+const { getUsers, getUserById, findUser, setUser, updateUser, deleteUser, changeImage, updateConfirm, checkConfirm } = require('../controllers/users.controller');
 
 router.get('/users', getUsers);
 router.get('/user/:id', getUserById);
+router.get('/userCheck/:id', checkConfirm);
+router.get('/user/verify/:id', updateConfirm);
 router.post('/findUser', findUser);
 router.post('/user', setUser);
+router.post('/user/changeImage', changeImage);
 router.put('/user', updateUser);
 router.delete('/user/:id', deleteUser);
-router.post('/user/changeImage', changeImage);
 
 
 //PRODUCT ROUTES
@@ -51,10 +53,11 @@ router.get('/request/:id', getRequest);
 router.get('/history/:id',getHistory);
 
 //AUTH ROUTES
-const { signIn, signUp, verifyToken } = require ('../controllers/auth.controller');
+const { signIn, signUp, sendEmail, verifyToken } = require ('../controllers/auth.controller');
 
 router.post('/signin', signIn);
 router.post('/signup', signUp);
+router.post('/auth/email', sendEmail);
 router.get('/verify', verifyToken);
 
 

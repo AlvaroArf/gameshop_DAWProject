@@ -25,6 +25,8 @@ export class AppComponent {
   id_user: string;
   user_img: any;
   search: string;
+  info: any;
+  check: boolean = true;
 
 
   constructor(private _authService: AuthService, 
@@ -82,11 +84,18 @@ export class AppComponent {
     this._authService.signIn(user)
       .subscribe(
         res => {
-          localStorage.setItem('token', res.token);
           this._apiDataService.findUser(user.email).subscribe(data => {
-            localStorage.setItem('id', data[0]['id_usuario']);
-            window.location.reload();
-        });
+            this._apiDataService.checkConfirm(data[0]['id_usuario']).subscribe(data2 => {
+              if(data2 == true){
+                localStorage.setItem('id', data[0]['id_usuario']);
+                localStorage.setItem('token', res.token);
+                window.location.reload();
+              } else {
+                this.check = false;
+              }
+            })
+          });
+          
         },
         err => console.log(err)
       )
@@ -98,13 +107,23 @@ export class AppComponent {
       .subscribe(
         res => {
           console.log(res)
+          if(res) {
+            this._authService.sendEmail(user.email, res).subscribe(data => {
+              this.info = data;
+            });
+            this._router.navigate(['/verify']);
+          } else {
+            this._router.navigate(['/']);
+          }
+
+          /*
           if(res != undefined){
             localStorage.setItem('token', res.token);
             this._apiDataService.findUser(user.email).subscribe(data => {
               localStorage.setItem('id', data[0]['id_usuario']); 
               window.location.reload();
             });
-          }
+          }*/
           
         },
         err => console.log(err)
