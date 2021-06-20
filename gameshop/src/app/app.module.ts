@@ -6,6 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthGuard } from "./auth.guard";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { GamelistComponent } from './gamelist/gamelist.component';
@@ -16,13 +18,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { RatingComponent } from './game/rating/rating.component';
 import { HistoryComponent } from './profile/history/history.component';
 import { AdmintoolsComponent } from './profile/admintools/admintools.component';
-
-import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
-import { AuthGuard } from "./auth.guard";
-import { CategoryComponent } from './category/category.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SearchComponent } from './search/search.component';
+import { EmailConfirmationComponent } from './email-confirmation/email-confirmation.component';
+import { SuccessComponent } from './email-confirmation/success/success.component';
+import { CategoryComponent } from './category/category.component';
+
+
 
 @NgModule({
   declarations: [
@@ -35,10 +36,10 @@ import { SearchComponent } from './search/search.component';
     RatingComponent,
     HistoryComponent,
     AdmintoolsComponent,
-    SigninComponent,
-    SignupComponent,
     CategoryComponent,
-    SearchComponent
+    SearchComponent,
+    EmailConfirmationComponent,
+    SuccessComponent
   ],
   imports: [
     BrowserModule,

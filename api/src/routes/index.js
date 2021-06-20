@@ -49,10 +49,11 @@ router.get('/request/:id', getRequest);
 router.get('/history/:id',getHistory);
 
 //AUTH ROUTES
-const { signIn, signUp, verifyToken } = require ('../controllers/auth.controller');
+const { signIn, signUp, sendEmail, verifyToken } = require ('../controllers/auth.controller');
 
 router.post('/signin', signIn);
 router.post('/signup', signUp);
+router.post('/auth/email', sendEmail);
 router.get('/verify', verifyToken);
 
 

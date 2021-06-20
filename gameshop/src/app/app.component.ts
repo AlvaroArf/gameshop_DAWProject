@@ -5,9 +5,6 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 
 import { APIDataService } from "./services/apidata.service";
 import { AuthService } from "./services/auth.service";
-//import { SearchComponent } from "./search/search.component";
-
-
 
 
 @Component({
@@ -25,12 +22,12 @@ export class AppComponent {
   id_user: string;
   user_img: any;
   search: string;
+  info: any;
 
 
   constructor(private _authService: AuthService, 
               private _router: Router,
               private _apiDataService: APIDataService,
-              //private _searchComponent: SearchComponent
               ) 
               { 
                   this.signUpForm();
@@ -98,13 +95,23 @@ export class AppComponent {
       .subscribe(
         res => {
           console.log(res)
+          if(res) {
+            /*this._authService.sendEmail(user.email).subscribe(data => {
+              this.info = data;
+            });*/
+            this._router.navigate(['/verification']);
+          } else {
+            this._router.navigate(['/']);
+          }
+
+          /*
           if(res != undefined){
             localStorage.setItem('token', res.token);
             this._apiDataService.findUser(user.email).subscribe(data => {
               localStorage.setItem('id', data[0]['id_usuario']); 
               window.location.reload();
             });
-          }
+          }*/
           
         },
         err => console.log(err)
@@ -117,7 +124,6 @@ export class AppComponent {
     
     if(this._router.url == '/search'){
       window.location.reload();
-     // this._searchComponent.ngOnInit();
     }
     
     this._router.navigate(['/search']);

@@ -1,11 +1,12 @@
 
 <div class="container">
     <h2>Historial de pedidos</h2>
-    <div class="empty-cart" *ngIf="pedidos[0] == null">
-        <p class="vaya">¡VAYA!</p>
-        <p>Parece que aún no realizó ningún pedido...</p>
-    </div>
+    
     <div class="pedido" *ngFor="let pedido of pedidos;let indice=index">
+        <div class="empty-cart" *ngIf="pedidos[0] == null">
+            <p class="vaya">¡VAYA!</p>
+            <p>Parece que aún no realizó ningún pedido...</p>
+        </div>
         <div class="id_pedido">
             <p>ID PEDIDO: <b>#{{pedido.id_pedido}}</b>
                 <span class="fecha_pedido">{{pedido.fecha}}</span>
