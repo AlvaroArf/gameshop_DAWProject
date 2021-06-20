@@ -15,13 +15,14 @@ router.post('/user/changeImage', changeImage);
 
 
 //PRODUCT ROUTES
-const { getProducts, getProductsByCategory, getProductById, setProduct, updateProduct, deleteProduct, searchProduct } = require('../controllers/products.controller');
+const { getProducts, getProductsByCategory, getProductById, setProduct, updateStock, updateProduct, deleteProduct, searchProduct } = require('../controllers/products.controller');
 
 router.get('/products', getProducts);
 router.get('/products/:id', getProductsByCategory);
 router.get('/product/:id', getProductById);
 router.post('/product', setProduct);
 router.post('/product/search', searchProduct)
+router.post('/product/stock', updateStock)
 router.put('/product', updateProduct);
 router.delete('/product/:id', deleteProduct);
 
@@ -37,13 +38,14 @@ router.delete('/category/:id', deleteCategory);
 
 
 //REQUEST ROUTES
-const { getRequestDetails, setRequestGame, productExist, updateRequestGame ,newRequest, getRequest, getHistory, changeStatus } = require ('../controllers/requests.controller');
+const { getRequestDetails, setRequestGame, productExist, updateRequestGame, getAmount, newRequest, getRequest, getHistory, changeStatus } = require ('../controllers/requests.controller');
 
 router.get('/cart/:id', getRequestDetails);
 router.post('/cart', setRequestGame);
 router.post('/cartExist', productExist);
 router.post('/cartUpdate', updateRequestGame);
 router.post('/newRequest', newRequest);
+router.post('/request/amount', getAmount);
 router.post('/request/change', changeStatus);
 router.get('/request/:id', getRequest);
 router.get('/history/:id',getHistory);

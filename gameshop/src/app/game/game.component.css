@@ -17,7 +17,7 @@
     border-radius: 10px;
 }
 
-h2, .descripcion, .precio {
+h2, .descripcion, .precio, .stock {
     position: absolute;
     left:35vw;
 }
@@ -29,6 +29,10 @@ h2 {
 .descripcion {
     top: 34vh;
     margin-right:14vw;
+}
+
+.stock {
+    top: 54vh;
 }
 
 .precio {

@@ -15,6 +15,7 @@ export class GameComponent implements OnInit {
   public info: any;
   public id:string;
   public id_user;
+  public amount: any;
   token = '';
 
 
@@ -41,26 +42,29 @@ export class GameComponent implements OnInit {
     })
   }
 
-  sendToCart(id_producto){
-    //if (this._authService.loggedIn()){
+  sendToCart(id_producto, stock){
+    if (this._authService.loggedIn()){
       this.id_user = localStorage.getItem('id');
+      
+      console.log("AMOUNT" + this.amount);
       this._apiDataService.productExist(this.id_user, id_producto).subscribe(data => {
-        console.log("EL DATA" + data[0]);
         if(data[0] == undefined){
           this._apiDataService.setRequestGame(this.id_user, id_producto).subscribe(data=>{
             this.info = data;
           })
         } else {
-          this._apiDataService.updateRequestGame2(this.id_user, id_producto).subscribe(data => {
-            this.info = data;
+          this._apiDataService.getAmount(this.id_user, id_producto).subscribe(data1 => {
+            if(parseInt(data1) < parseInt(stock)){
+              this._apiDataService.updateRequestGame2(this.id_user, id_producto).subscribe(data => {
+                this.info = data;
+              })
+            }
           })
         }
       })
-    /*} else {
-      //this._router.navigate(['/signin']);
-      console.log("ESTO SON COSAS" + document.getElementById("signinPage"));
-      document.getElementById("signinPage").style.visibility = "show";
-    }*/
+    } else {
+      document.getElementById("signinButton").click();
+    }
   }
 
   sendToWishlist(id_producto){

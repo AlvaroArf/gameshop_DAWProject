@@ -33,6 +33,8 @@ export class CartComponent implements OnInit {
           "nombre_producto": data[i].nombre_producto,
           "precio": Math.round(total* 100) / 100,
           "imagen": data[i].imagen,
+          "stock_real": data[i].stock,
+          "stock": data[i].stock - data[i].cantidad
         }
         this.cartlist.push(temp); 
       }
@@ -74,7 +76,19 @@ export class CartComponent implements OnInit {
     this._apiDataService.newRequest(id_pedido, id_usuario).subscribe(data=>{
       this.info = data;
     });
+    this.updateStock();
     document.getElementById("abrirModal").click();
     this.ngOnInit();
   }
+
+  updateStock() {
+    for(let i = 0; i < this.cartlist.length; i++){
+      let stock = this.cartlist[i].stock;
+      let id_producto = this.cartlist[i].id_producto;
+      this._apiDataService.updateStock(id_producto, stock).subscribe(data => {
+        this.info = data;
+      })
+    }
+  }
+
 }

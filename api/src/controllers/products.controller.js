@@ -60,6 +60,13 @@ const searchProduct = async (req, res)=> {
     res.json(response.rows);
 }
 
+const updateStock = async (req, res)=> {
+    const { id_producto, stock } = req.body;
+   
+    const response = await pool.query('update producto set stock = $1 where id_producto = $2',[stock, id_producto]);
+    res.send("STOCK UPDATED");
+}
+
 module.exports = {
     getProducts,
     getProductsByCategory,
@@ -67,5 +74,6 @@ module.exports = {
     setProduct,
     updateProduct,
     deleteProduct,
-    searchProduct
+    searchProduct,
+    updateStock
 }

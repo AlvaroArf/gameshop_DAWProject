@@ -10,7 +10,7 @@
                     </svg>
                 </i>
                 <p><b>{{game['cantidad']}}</b></p>
-                <i (click)="updateCantidad([game['cantidad'], 'sumar'], game['id_pedido'], game['id_producto'])">
+                <i (click)="updateCantidad([game['cantidad'], 'sumar'], game['id_pedido'], game['id_producto'])" *ngIf="game['stock'] != 0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill bot-arrow" viewBox="0 0 16 16">
                         <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
                     </svg>
@@ -40,12 +40,26 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header text-center">
-          <h3 class="modal-title w100 dark-grey-text font-weight-bold">Iniciar Sesión</h3>
+          <h3 class="modal-title w100 dark-grey-text font-weight-bold"></h3>
           <button type="button" class="close" data-dismiss="modal" aria-lable="close">&times;</button>
         </div>
         <div class="modal-body mx-4">
             <p class="title">¡Gracias por su compra!<i class="bi bi-emoji-smile"></i></p>
             <p>Puede ver el estado del pedido desde su perfil de usuario</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="error-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h3 class="modal-title w100 dark-grey-text font-weight-bold">Error</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-lable="close">&times;</button>
+        </div>
+        <div class="modal-body mx-4">
+            <p class="title">¡Ha habido un error!<i class="bi bi-emoji-smile"></i></p>
+            <p>Parece que has introducido una cantidad que supera al stock disponible del producto</p>
         </div>
       </div>
     </div>

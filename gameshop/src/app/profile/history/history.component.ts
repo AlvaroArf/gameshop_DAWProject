@@ -31,23 +31,23 @@ export class HistoryComponent implements OnInit {
     })
   }
 
-  changeStatus(fecha, id_pedido, id_producto) {
+  changeStatus(stock, cantidad, id_pedido, id_producto) {
     this._apiDataService.changeStatus(true, id_pedido, id_producto).subscribe(data => {
+      this.info = data;
+    })
+    let new_stock = parseInt(stock) + parseInt(cantidad);
+    this._apiDataService.updateStock(id_producto, new_stock).subscribe(data => {
       this.info = data;
     })
     this.getContent();
   }
 
   isSended(fecha) {
-    //console.log("LO QUE TRAE:" + fecha)
     var fecha_pedido = new Date(fecha).getTime();
-    //console.log("FECHA DEL PEDIDO: " + fecha_pedido);
     let fecha_hoy = new Date();
     let fecha_hoy_up = fecha_hoy.setHours(0,0,0,0);
-    //console.log("FECHA DE HOY: " + fecha_hoy_up)
     let diff = fecha_hoy_up - fecha_pedido;
     let dias_diff = diff/(1000*60*60*24);
-    //console.log("DIFERENCIA DE DIAS: " + dias_diff )
     if( dias_diff >= 2 ) {
       return true
     } 

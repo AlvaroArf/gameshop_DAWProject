@@ -10,7 +10,7 @@ const pool = new Pool({
 
 const getRequestDetails = async (req, res) => {
     const id = req.params.id;
-    const response = await pool.query('select dp.id_pedido, dp.id_producto, dp.cantidad, dp.devuelto, prod.nombre_producto, prod.precio, prod.imagen from producto as prod join pedido as ped on ped.id_usuario = $1 and ped.comprando = true join detalle_pedido as dp on dp.id_pedido = ped.id_pedido where prod.id_producto = dp.id_producto order by prod.nombre_producto;', [id]);
+    const response = await pool.query('select dp.id_pedido, dp.id_producto, dp.cantidad, dp.devuelto, prod.nombre_producto, prod.precio, prod.imagen, prod.stock from producto as prod join pedido as ped on ped.id_usuario = $1 and ped.comprando = true join detalle_pedido as dp on dp.id_pedido = ped.id_pedido where prod.id_producto = dp.id_producto order by prod.nombre_producto;', [id]);
     //const response = await pool.query('select * from producto where id_producto in (select dp.id_producto from detalle_pedido as dp join pedido as ped on ped.id_usuario = $1 where dp.id_pedido = ped.id_pedido', [id_usuario])
     res.json(response.rows);
 };
@@ -84,7 +84,7 @@ const getRequest = async (req, res) => {
 const getHistory = async (req, res) => {
     const id_pedido = req.params.id;
     //const response = await pool.query('select p.id_pedido, p.fecha,  dp.id_producto, dp.cantidad, dp.devuelto from pedido as p join detalle_pedido as dp on dp.id_pedido = p.id_pedido where id_usuario = $1 and p.comprando = false order by p.id_pedido', [id_usuario]);
-    const response = await pool.query('select dp.id_producto, p.nombre_producto, p.imagen, p.precio, dp.cantidad, dp.devuelto from detalle_pedido as dp join producto as p on p.id_producto = dp.id_producto where id_pedido = $1', [id_pedido]);
+    const response = await pool.query('select dp.id_producto, p.nombre_producto, p.imagen, p.precio, p.stock, dp.cantidad, dp.devuelto from detalle_pedido as dp join producto as p on p.id_producto = dp.id_producto where id_pedido = $1', [id_pedido]);
     res.json(response.rows);
 }
 
@@ -93,6 +93,13 @@ const changeStatus = async (req, res) => {
     const response = await pool.query('update detalle_pedido set devuelto = $1 where id_pedido = $2 and id_producto = $3', [status, id_pedido, id_producto]);
 
     res.send("STATUS CHANGED");
+}
+
+const getAmount = async (req, res) => {
+    const { id_usuario, id_producto } = req.body;
+    const response = await pool.query('select dp.cantidad from detalle_pedido as dp join pedido as p on p.id_usuario = $1 and p.comprando = true where p.id_pedido = dp.id_pedido and dp.id_producto = $2;', [id_usuario, id_producto]);
+
+    res.json(response.rows[0].cantidad);
 }
 
 
@@ -105,5 +112,7 @@ module.exports = {
     newRequest,
     getRequest,
     getHistory,
-    changeStatus
+    changeStatus,
+    getAmount
 }
+

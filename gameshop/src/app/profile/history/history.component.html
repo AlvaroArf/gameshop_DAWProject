@@ -41,7 +41,7 @@
                         </span>
                     </td>
                     <td>
-                        <button class="btn btn-primary" type="button" *ngIf="product.devuelto == false && canReturnOrder(pedido.fecha)" (click)="changeStatus(pedido.fecha, pedido.id_pedido, product.id_producto)">Devolver</button>
+                        <button class="btn btn-primary" type="button" *ngIf="product.devuelto == false && canReturnOrder(pedido.fecha)" (click)="changeStatus(product.stock, product.cantidad, pedido.id_pedido, product.id_producto)">Devolver</button>
                         <button class="btn btn-primary" type="button" *ngIf="product.devuelto == false && !canReturnOrder(pedido.fecha)" disabled>Devolver</button>
                         <button class="btn btn-primary" type="button" *ngIf="product.devuelto == true" disabled>Devolver</button>
                     </td>

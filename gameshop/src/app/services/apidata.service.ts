@@ -47,6 +47,10 @@ export class APIDataService {
     return this.http.post(this.url + '/api/product/search', {"busqueda": busqueda});
   }
 
+  updateStock(id_producto, stock) {
+    return this.http.post(this.url + '/api/product/stock', {"id_producto": id_producto, "stock": stock});
+  }
+
   //CATEGORIES
   getCategories(): Observable<any>{
     this.data = this.url + "/api/categories";
@@ -97,6 +101,10 @@ export class APIDataService {
 
   newRequest(id_pedido, id_usuario):Observable<any>{
     return this.http.post(this.url + "/api/newRequest", {"id_pedido": id_pedido, "id_usuario": id_usuario});
+  }
+    
+  getAmount(id_usuario, id_producto): Observable<any> {
+    return this.http.post(this.url + '/api/request/amount', {"id_usuario": id_usuario, "id_producto": id_producto})
   }
 
   //USER
